@@ -1,9 +1,12 @@
 const expect = require('expect');
 const request = require('supertest');
+const {beforeEach} = require('mocha');
 
 const {app} = require('./../server');
 const {User} = require('./../models/user');
+const {users, populateUsers} = require('./seed/seed');
 
+beforeEach(populateUsers);
 
 describe('POST /users', () => {
   it('should create a user', (done) => {
@@ -30,5 +33,14 @@ describe('POST /users', () => {
           done();
         }).catch((e) => done(e));
       });
+  });
+
+  it('should not create a user when email already exists', (done) => {
+
+    request(app)
+      .post('/users')
+      .send({email: users[0].email, password: '123456'})
+      .expect(400)
+      .end(done);
   });
 });
