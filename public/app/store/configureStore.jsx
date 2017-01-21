@@ -1,12 +1,14 @@
 var { createStore, combineReducers, applyMiddleware, compose } = require('redux');
 var thunk = require('redux-thunk').default;
-var {templateReducer, loginReducer, registerReducer} = require('reducers');
+import loginReducer from 'loginReducer';
+import registerReducer from 'registerReducer';
+import errorReducer from 'errorReducer';
 
 export var configure = (initialState = {}) => {
   var reducer = combineReducers({
-    templateData: templateReducer,
     login: loginReducer,
-    register: registerReducer
+    register: registerReducer,
+    error: errorReducer
   });
 
   var store = createStore(reducer, initialState, compose(

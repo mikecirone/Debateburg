@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 var {mongoose} = require('./db/mongoose');
-var User = require('./models/user');
+var {User} = require('./models/user');
 
 var app = express();
 const port = process.env.PORT;

@@ -27,14 +27,19 @@ module.exports = {
     alias: {
       applicationStyle: 'public/app/styles/app.scss',
       Login: 'public/app/components/Login.jsx',
+      loginReducer: 'public/app/reducers/loginReducer.jsx',
       Register: 'public/app/components/Register.jsx',
+      RegisterContainer: 'public/app/containers/RegisterContainer.jsx',
+      registerActions: 'public/app/actions/registerActions.jsx',
+      registerReducer: 'public/app/reducers/registerReducer.jsx',
       Home: 'public/app/components/Home.jsx',
       Gameroom: 'public/app/components/Gameroom.jsx',
       Main: 'public/app/components/Main.jsx',
-      Template: 'public/app/components/Template.jsx',
-      actions: 'public/app/actions/actions.jsx',
-      actionEnums: 'public/app/actions/actionEnums.jsx',
-      reducers: 'public/app/reducers/reducers.jsx',
+      ErrorModal: 'public/app/components/ErrorModal.jsx',
+      ErrorModalContainer: 'public/app/containers/ErrorModalContainer.jsx',
+      errorActions: 'public/app/actions/errorActions.jsx',
+      errorReducer: 'public/app/reducers/errorReducer.jsx',
+      actionTypes: 'public/app/actions/actionTypes.jsx',
       configureStore: 'public/app/store/configureStore.jsx',
       //--------------start:
       //       used this link to resolve many warnings when calling webpack

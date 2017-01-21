@@ -1,26 +1,26 @@
 var React = require('react');
 var {connect} = require('react-redux');
 
-var actions = require('actions');
+// var actions = require('actions');
 
 var Login = React.createClass({
   handleLogin: function() {
-    this.props.dispatch(actions.fetchRegister());
+    this.props.dispatch(actions.fetchLogin());
   },
   render: function() {
-    var {isFetching, authToken} = this.props;
+    var {templateData1, isFetching, url} = this.props;
 
     function renderMsg() {
       if(isFetching) {
         return "Loading...";
       } else {
-        return authToken;
+        return url;
       }
     }
 
     return (
       <div>
-        <p>Register</p>
+        <p>Login</p>
         <p>{renderMsg()}</p>
         <button className="button" onClick={this.handleLogin}>
           Go
@@ -33,7 +33,8 @@ var Login = React.createClass({
 export default connect(
   (state) => {
     return {
-      ...state.register
+      templateData1: state.templateData.templateData1,
+      ...state.login
     };
   }
 )(Login);

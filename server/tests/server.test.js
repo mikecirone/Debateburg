@@ -7,8 +7,8 @@ const {User} = require('./../models/user');
 
 describe('POST /users', () => {
   it('should create a user', (done) => {
-    var email = 'foo@bar.com';
-    var password = '789';
+    var email = 'foo@bar123.com';
+    var password = '123456';
 
     request(app)
       .post('/users')

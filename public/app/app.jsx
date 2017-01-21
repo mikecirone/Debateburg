@@ -5,10 +5,9 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 import Main from 'Main';
 import Login from 'Login';
-import Register from 'Register';
+import RegisterContainer from 'RegisterContainer';
 import Home from 'Home';
 import  Gameroom from 'Gameroom';
-import Template from 'Template';
 
 var store = require('configureStore').configure();
 
@@ -26,10 +25,9 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={Main}>
         <IndexRoute component={Login} />
-        <Route path="register" component={Register} />
+        <Route path="register" component={RegisterContainer} />
         <Route path="home" component={Home} />
         <Route path="gameroom" component={Gameroom} />
-        <Route path="template" component={Template} />
       </Route>
     </Router>
   </Provider>,
