@@ -1,6 +1,7 @@
 import * as actionTypes from 'actionTypes';
+import {errorDefault} from 'stateDefaults';
 
-var errorReducer = (state = {isActive: false, message: undefined}, action) => {
+var errorReducer = (state = errorDefault, action) => {
 
   switch(action.type) {
     case actionTypes.SHOW_ERROR_MESSAGE:

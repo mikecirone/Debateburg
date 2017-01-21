@@ -41,6 +41,8 @@ module.exports = {
       errorReducer: 'public/app/reducers/errorReducer.jsx',
       actionTypes: 'public/app/actions/actionTypes.jsx',
       configureStore: 'public/app/store/configureStore.jsx',
+      stateDefaults: 'public/app/store/stateDefaults.jsx',
+      seed: 'public/app/tests/seed.jsx',
       //--------------start:
       //       used this link to resolve many warnings when calling webpack
       //       https://github.com/facebook/react/issues/4566

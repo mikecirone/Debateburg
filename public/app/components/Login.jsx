@@ -1,14 +1,22 @@
 var React = require('react');
 var {connect} = require('react-redux');
 
-// var actions = require('actions');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var expect = require('expect');
+var $ = require('jQuery');
+var TestUtils = require('react-addons-test-utils');
+
+var registerProps = {
+  isFetching: true, authToken: undefined, onRegister: undefined, error: {isActive: false}
+};
 
 var Login = React.createClass({
   handleLogin: function() {
     this.props.dispatch(actions.fetchLogin());
   },
   render: function() {
-    var {templateData1, isFetching, url} = this.props;
+    var {isFetching, url} = this.props;
 
     function renderMsg() {
       if(isFetching) {
@@ -33,7 +41,6 @@ var Login = React.createClass({
 export default connect(
   (state) => {
     return {
-      templateData1: state.templateData.templateData1,
       ...state.login
     };
   }

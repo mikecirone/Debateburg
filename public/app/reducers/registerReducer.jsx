@@ -1,9 +1,7 @@
 import * as actionTypes from 'actionTypes';
+import {registerDefault} from 'stateDefaults';
 
-var registerReducer = (state = {
-    isFetching: false,
-    authToken: undefined
-  }, action) => {
+var registerReducer = (state = registerDefault, action) => {
   switch (action.type) {
     case actionTypes.FETCH_REGISTER_REQUEST:
       return {

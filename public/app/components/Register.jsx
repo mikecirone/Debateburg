@@ -3,13 +3,15 @@ var React = require('react');
 
 import ErrorModalContainer from 'ErrorModalContainer';
 
-//stateless functional component
-var Register = function(props) {
-    var {isFetching, authToken, onRegister, error} = props;
+//stateless functional component,
+//but needs to be React class to work with unit testing
+var Register = React.createClass({
+  render: function() {
+    var {isFetching, authToken, onRegister, error} = this.props;
     return (
       <div>
         <p>Register</p>
-        <p className={!isFetching && 'invisible'}>Loading...</p>
+        <p id="loading-text" className={!isFetching && 'invisible'}>Loading...</p>
         <button className="button" onClick={onRegister}>
           Go
         </button>
@@ -18,6 +20,7 @@ var Register = function(props) {
       </div>
     );
   }
+})
 
 export default Register;
 

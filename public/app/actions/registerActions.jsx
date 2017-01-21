@@ -29,7 +29,7 @@ export var fetchRegister = () => {
     dispatch(requestRegister());
 
     axios.post('http://localhost:3000/users', {
-      email: 'mikjejjkkssddff@1233.com',
+      email: 'mikjejjkkkkssddff@1233.com',
       password: '123456'
     }).then( (res) => {
       dispatch(receiveRegisterSuccess(JSON.stringify(res)));
