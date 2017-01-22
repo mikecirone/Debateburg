@@ -4,8 +4,8 @@ var ErrorModal = function(props) {
   var {title, message, onClose} = props;
 
   return (
-    <div id="myModal" className="modal">
-      <div className="modal-content">
+    <div id="myModal" className="modal-x">
+      <div className="modal-x-content">
         <p>{message}</p>
         <button className="button" onClick={onClose}>
           Close

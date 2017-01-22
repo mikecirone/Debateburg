@@ -4,7 +4,6 @@ var path = require('path');
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
-    'script!foundation-sites/dist/foundation.min.js',
     //load before app.jsx, as they are app.jsx dependencies
     './public/app/app.jsx'
   ],

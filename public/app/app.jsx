@@ -16,10 +16,6 @@ store.subscribe(() => {
   console.log('New state', state);
 });
 
-$(document).foundation();
-
-require('style!css!sass!applicationStyle');
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>

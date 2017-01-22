@@ -3,12 +3,14 @@ var thunk = require('redux-thunk').default;
 import loginReducer from 'loginReducer';
 import registerReducer from 'registerReducer';
 import errorReducer from 'errorReducer';
+import { reducer as formReducer } from 'redux-form';
 
 export var configure = (initialState = {}) => {
   var reducer = combineReducers({
     login: loginReducer,
     register: registerReducer,
-    error: errorReducer
+    error: errorReducer,
+    form: formReducer
   });
 
   var store = createStore(reducer, initialState, compose(

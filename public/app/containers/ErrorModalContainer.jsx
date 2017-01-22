@@ -23,7 +23,7 @@ var ErrorModalContainer = React.createClass({
 
 const mapStateToProps = function(state) {
   return {
-    message: state.error.message
+    message: state.error.errorMessage
   };
 };
 

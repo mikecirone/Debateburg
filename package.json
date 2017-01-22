@@ -19,6 +19,7 @@
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.9",
     "react": "^0.14.7",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^0.14.7",
     "react-redux": "^4.4.1",
     "react-router": "^2.0.0",

@@ -5,6 +5,6 @@ export var registerDefault = {
 };
 
 export var errorDefault = {
-  isActive: false,
-  message: undefined
+  errorIsActive: false,
+  errorMessage: undefined
 };
