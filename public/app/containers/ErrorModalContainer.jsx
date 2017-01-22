@@ -29,7 +29,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch, props) {
   return {
-    onClose: function() {
+    handleClose: function() {
       dispatch(errorActions.closeErrorModal());
     }
   };

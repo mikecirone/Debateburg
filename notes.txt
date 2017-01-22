@@ -1,0 +1,14 @@
+
+
+Structured package.json so that webpack can build bundle.js on server, via including
+webpack-associated modules in the 'dependencies' section, as opposed to 'devDependencies'.
+
+
+Made decision to go with using bootstrap, as opposed to foundation. Bootstrap's form styling
+is much better. Foundation modal solution worked, but had poor design.
+
+
+'react-bootstrap' was key to getting a professional modal system going
+   - failed/poor alternaitves: foundation modal solution, react-bootstrap-modal module
+   - dependencies:
+      - must use bootstrap 3, tried 4 and modal does not show
