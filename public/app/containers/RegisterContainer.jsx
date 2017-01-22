@@ -16,8 +16,8 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch, props) {
   return {
-    handleRegister: function() {
-      dispatch(fetchRegister());
+    onSubmit: function(values) {
+      dispatch(fetchRegister(values.email, values.password));
     }
   };
 };
@@ -34,17 +34,30 @@ function validate(values) {
   return errors;
 }
 
-// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
-// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
-export default reduxForm({
+//redux-form v6 way: must do reduxForm() and! connect() --> https://github.com/erikras/redux-form/issues/1050
+//----------------------------------------
+var RegisterContainer = reduxForm({
     form: 'RegisterForm',
     fields: ['email', 'password'],
     validate
-  },
-  mapStateToProps,
-  mapDispatchToProps
-)(Register);
+  })(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
 
+
+//redux-form v5 way
+//---------------------------------------------
+// connect: first argument is mapStateToProps, 2nd is mapDispatchToProps
+// reduxForm: 1st is form config, 2nd is mapStateToProps, 3rd is mapDispatchToProps
+// export default reduxForm({
+//     form: 'RegisterForm',
+//     fields: ['email', 'password'],
+//     validate
+//   },
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Register);
+
+// Oldest way: before redux-form
 // export default connect(
 //   mapStateToProps,
 //   mapDispatchToProps

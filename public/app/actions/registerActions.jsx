@@ -24,13 +24,12 @@ export var receiveRegisterFailure = (jsonRes) => {
   };
 };
 
-export var fetchRegister = () => {
+export var fetchRegister = (email, password) => {
   return (dispatch, getState) => {
     dispatch(requestRegister());
 
     axios.post('http://localhost:3000/users', {
-      email: 'mikjejjkkkkssddff@1233.com',
-      password: '123456'
+      email, password
     }).then( (res) => {
       dispatch(receiveRegisterSuccess(JSON.stringify(res)));
     })
