@@ -8,7 +8,7 @@ export const renderTextInput = field => {
 	const { input, label, type, meta: { touched, error }, invalid } = field
 	return (
     <div className={`form-group ${touched && invalid ? 'has-danger' : ''}`}>
-      <label>Email</label>
+      <label>{label}</label>
       <input type={type} className="form-control" {...input} />
       <div className="text-help">
         {touched ? error : ''}
@@ -28,6 +28,9 @@ var Register = React.createClass({
           //form props hooked up / made available by redux-form,
           //via reduxForm() in RegisterContainer,
           //which acts like connect()
+
+		console.log(authToken);
+
     return (
       <div>
         <h3>Register</h3>

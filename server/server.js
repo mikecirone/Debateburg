@@ -15,6 +15,7 @@ app.use(bodyParser.json()); //converts sent JSON to JS obj literal
 
 app.use(express.static('public'));
 
+
 app.post('/users', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
   var user = new User(body);

@@ -10,10 +10,10 @@ export var requestRegister = () => {
   };
 };
 
-export var receiveRegisterSuccess = (jsonRes) => {
+export var receiveRegisterSuccess = (authToken) => {
   return {
     type: actionTypes.FETCH_REGISTER_SUCCESS,
-    jsonRes
+    authToken
   };
 };
 
@@ -28,10 +28,11 @@ export var fetchRegister = (email, password) => {
   return (dispatch, getState) => {
     dispatch(requestRegister());
 
-    axios.post('http://localhost:3000/users', {
+    return axios.post('http://localhost:3000/users', {
       email, password
     }).then( (res) => {
-      dispatch(receiveRegisterSuccess(JSON.stringify(res)));
+      dispatch(receiveRegisterSuccess(res.headers['x-auth']));
+      // dispatch(receiveRegisterSuccess("something"));
     })
     .catch( (err) => {
       dispatch(receiveRegisterFailure(JSON.stringify(err)));

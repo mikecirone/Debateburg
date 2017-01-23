@@ -11,7 +11,7 @@ var registerReducer = (state = registerDefault, action) => {
     case actionTypes.FETCH_REGISTER_SUCCESS:
       return {
         isFetching: false,
-        authToken: action.jsonRes
+        authToken: action.authToken
       };
     case actionTypes.FETCH_REGISTER_FAILURE:
       return {
