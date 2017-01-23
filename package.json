@@ -4,9 +4,9 @@
   "description": "Simple react app",
   "main": "index.js",
   "scripts": {
-    "test-client": "karma start",
+    "test-client": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha -w --compilers js:babel-core/register public/app/tests/**/*.test.jsx",
     "test-server": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha -w --compilers js:babel-core/register public/app/tests/components/Form.test.jsx"
+    "test-client-old": "karma start"
   },
   "author": "Mike Cirone",
   "license": "MIT",
