@@ -15,7 +15,7 @@ describe('async actions', () => {
     nock.cleanAll()
   })
 
-  it('creates FETCH_REGISTER_SUCCESS when fetching todos has been done', () => {
+  it('creates FETCH_REGISTER_SUCCESS and has authToken payload when fetching todos has been done', () => {
     nock('http://localhost:3000/')
       .post('/users')
       .reply(200, 'content!', { "x-auth": "something" })

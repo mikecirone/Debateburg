@@ -17,10 +17,9 @@ export var receiveRegisterSuccess = (authToken) => {
   };
 };
 
-export var receiveRegisterFailure = (jsonRes) => {
+export var receiveRegisterFailure = () => {
   return {
-    type: actionTypes.FETCH_REGISTER_FAILURE,
-    jsonRes
+    type: actionTypes.FETCH_REGISTER_FAILURE
   };
 };
 
@@ -35,7 +34,7 @@ export var fetchRegister = (email, password) => {
       // dispatch(receiveRegisterSuccess("something"));
     })
     .catch( (err) => {
-      dispatch(receiveRegisterFailure(JSON.stringify(err)));
+      dispatch(receiveRegisterFailure());
       //needed for register reducer to set 'isFetching' back to false
 
       dispatch(showError('Oops, that username is already taken.'));

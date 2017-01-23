@@ -1,6 +1,15 @@
 
 
 
+Getting unique email to work on MongoDB:
+-------------------------------------------------------------
+http://stackoverflow.com/questions/5535610/mongoose-unique-index-not-working
+1) remove all docs from collection
+     - db.users.remove({})
+2) From the mongo shell, execute the command:  db.users.createIndex({email: 1}, {unique: true})
+
+1/23
+
 
 Getting redux-form testing to work:
 ----------------------------------------------------

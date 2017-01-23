@@ -14,7 +14,10 @@ var UserSchema = new mongoose.Schema(
       required: true,
       minLength: 1,
       trim: true,
-      unique: true,
+      index: {
+        unique: true,
+        dropDups: true,
+      },
       validate: {
         validator: validator.isEmail, //validation fx
         message: '{VALUE} is not a valid email'
