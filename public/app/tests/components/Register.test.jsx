@@ -53,41 +53,41 @@ describe('Register', () => {
     subject = buildSubject();
   });
 
-//   it('should call handleSubmit when form is submitted', () => {
-//     handleSubmit = sinon.spy();   //important to not use var/let here
-//                                   //desire is to point existing handleSubmit at spy
-//     subject = buildSubject();
-//     const form = subject.find('form');
-//     form.simulate('submit');
-//     expect(handleSubmit.callCount).to.equal(1);
-//   });
-//
-//   it("loading text element's classes should include invisible when isFetching is false", () => {
-//
-//     subject = buildSubject();
-//     var res = subject.find('#loading-text').hasClass('invisible');
-//     expect(res).to.be.true;
-//   });
-//
-//   it("loading text element's classes should NOT include invisible when isFetching is true", () => {
-//     isFetching = true;
-//     subject = buildSubject();
-//     var res = subject.find('#loading-text').hasClass('invisible');
-//     expect(res).to.be.false;
-//   });
-// })
-//
-// describe('renderTextInput', () => {
-// 	let subject;
-// 	context("when in an error state", () => {
-// 		it("renders an error message for the input", () => {
-// 			const input = { name: 'email', value: '' };
-// 			const label = 'Email';
-// 			const meta = { touched: true, error: 'Enter a valid email' };
-// 			const element = renderTextInput({ input, label, meta, invalid: true });
-// 			subject = shallow(element);
-// 			const emailHelpBlock = subject.find('.text-help').first();
-// 			expect(emailHelpBlock).to.have.text().length.above(0);
-// 		});
-// 	});
+  it('should call handleSubmit when form is submitted', () => {
+    handleSubmit = sinon.spy();   //important to not use var/let here
+                                  //desire is to point existing handleSubmit at spy
+    subject = buildSubject();
+    const form = subject.find('form');
+    form.simulate('submit');
+    expect(handleSubmit.callCount).to.equal(1);
+  });
+
+  it("loading text element's classes should include invisible when isFetching is false", () => {
+
+    subject = buildSubject();
+    var res = subject.find('#loading-text').hasClass('invisible');
+    expect(res).to.be.true;
+  });
+
+  it("loading text element's classes should NOT include invisible when isFetching is true", () => {
+    isFetching = true;
+    subject = buildSubject();
+    var res = subject.find('#loading-text').hasClass('invisible');
+    expect(res).to.be.false;
+  });
+})
+
+describe('renderTextInput', () => {
+	let subject;
+	context("when in an error state", () => {
+		it("renders an error message for the input", () => {
+			const input = { name: 'email', value: '' };
+			const label = 'Email';
+			const meta = { touched: true, error: 'Enter a valid email' };
+			const element = renderTextInput({ input, label, meta, invalid: true });
+			subject = shallow(element);
+			const emailHelpBlock = subject.find('.text-help').first();
+			expect(emailHelpBlock).to.have.text().length.above(0);
+		});
+	});
 });

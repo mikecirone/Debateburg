@@ -29,8 +29,6 @@ var Register = React.createClass({
           //via reduxForm() in RegisterContainer,
           //which acts like connect()
 
-		console.log(authToken);
-
     return (
       <div>
         <h3>Register</h3>
