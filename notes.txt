@@ -1,5 +1,21 @@
 
 
+
+
+Getting redux-form testing to work:
+----------------------------------------------------
+https://github.com/tylercollier/redux-form-test
+
+ - upgraded to react v15, as it is required given the project's setup
+ - Had to use babel-plugin-webpack-aliases to load in aliases for file paths
+ - Using .babelrc to specify usage of above package, with test cmd indicating NODE_ENV=test
+ - Using chai (assertions), enzyme (test utility for react) and sinon (mocking)
+   as example above user
+    - these libs all have high dloads, so should be good to go
+
+1/21
+
+
 Structured package.json so that webpack can build bundle.js on server, via including
 webpack-associated modules in the 'dependencies' section, as opposed to 'devDependencies'.
 
@@ -11,4 +27,6 @@ is much better. Foundation modal solution worked, but had poor design.
 'react-bootstrap' was key to getting a professional modal system going
    - failed/poor alternaitves: foundation modal solution, react-bootstrap-modal module
    - dependencies:
-      - must use bootstrap 3, tried 4 and modal does not show
+      - must use bootstrap 3 css, tried 4 and modal does not show
+
+1/19

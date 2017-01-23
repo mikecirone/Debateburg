@@ -1,5 +1,4 @@
 var React = require('react');
-//needed, not sure why
 
 import { Field, SubmissionError } from 'redux-form'
 
@@ -22,13 +21,7 @@ export const renderTextInput = field => {
 //but needs to be React class to work with unit testing
 var Register = React.createClass({
 
-  mySubmit: function(values) {
-    console.log(values);
-  },
-
   render: function() {
-
-    console.log(this.props);
 
     const {isFetching, authToken, errorIsActive, errorMessage} = this.props;
     const { fields: {email, password}, handleSubmit} = this.props;
@@ -55,6 +48,6 @@ var Register = React.createClass({
       </div>
     );
   }
-})
+});
 
 export default Register;
