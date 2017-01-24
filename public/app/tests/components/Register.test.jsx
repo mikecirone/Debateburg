@@ -75,19 +75,19 @@ describe('Register', () => {
     var res = subject.find('#loading-text').hasClass('invisible');
     expect(res).to.be.false;
   });
-})
 
-describe('renderTextInput', () => {
-	let subject;
-	context("when in an error state", () => {
-		it("renders an error message for the input", () => {
-			const input = { name: 'email', value: '' };
-			const label = 'Email';
-			const meta = { touched: true, error: 'Enter a valid email' };
-			const element = renderTextInput({ input, label, meta, invalid: true });
-			subject = shallow(element);
-			const emailHelpBlock = subject.find('.text-help').first();
-			expect(emailHelpBlock).to.have.text().length.above(0);
-		});
-	});
+  describe('renderTextInput', () => {
+  	let subject;
+  	describe("when in an error state", () => {
+  		it("renders an error message for the input", () => {
+  			const input = { name: 'email', value: '' };
+  			const label = 'Email';
+  			const meta = { touched: true, error: 'Enter a valid email' };
+  			const element = renderTextInput({ input, label, meta, invalid: true });
+  			subject = shallow(element);
+  			const emailHelpBlock = subject.find('.text-help').first();
+  			expect(emailHelpBlock).to.have.text().length.above(0);
+  		});
+  	});
+  });
 });
