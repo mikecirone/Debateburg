@@ -2,9 +2,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
-
-// Use native promises
-mongoose.Promise = global.Promise;
+const validator = require('validator');
 
 var UserSchema = new mongoose.Schema(
   {
@@ -16,6 +14,10 @@ var UserSchema = new mongoose.Schema(
       index: {
         unique: true,
         dropDups: true,
+      },
+      validate: {
+        validator: validator.isEmail, //validation fx
+        message: '{VALUE} is not a valid email'
       }
     },
     password: {
@@ -46,6 +48,21 @@ UserSchema.pre('save', function (next) {
     next();
   }
 });
+
+UserSchema.statics.findByToken = function (token) {
+  var User = this;
+  var decoded;
+
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (e) {
+    return Promise.reject();
+  }
+
+  return User.findOne({
+    _id: decoded._id
+  });
+};
 
 var User = mongoose.model('User', UserSchema);
 

@@ -1,5 +1,9 @@
 
 
+Removed catch()es after then()only promises returned by Mongoose queries/find()s
+
+1/24
+
 
 Getting unique email to work on MongoDB:
 -------------------------------------------------------------

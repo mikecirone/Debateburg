@@ -1,6 +1,6 @@
 const {MongoClient, ObjectID} = require('mongodb');
 
-const {User} = require('./../../models/user');
+const {User} = require('./../../models/user.model');
 
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
@@ -18,8 +18,6 @@ MongoClient.connect('mongodb://localhost:27017/GameAppTest', (err, db) => {
   if (err) {
     return console.log('Unable to connect to MongoDB server');
   }
-  console.log('Connected to MongoDB server');
-
   //following same process needed to enforce unique email in real testing
   db.collection('users').remove({});
   db.collection('users').createIndex({email: 1}, {unique: true});

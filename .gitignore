@@ -1,3 +1,4 @@
 node_modules/
 client/public/bundle.js
 server/config/config.json
+char*.jpg
