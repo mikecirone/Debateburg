@@ -37,7 +37,8 @@ export var fetchRegister = (email, password) => {
       dispatch(receiveRegisterFailure());
       //needed for register reducer to set 'isFetching' back to false
 
-      dispatch(showError('Oops, that username is already taken.'));
+      dispatch(showError('Oops, that email is already taken.'));
+      //Only verification that should occur on server.
     });
 
   };

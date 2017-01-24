@@ -8,9 +8,9 @@ const mapStateToProps = function(state) {
   return {
     ...state.register,
     ...state.error
-    //error: state.error //old method where error.isActive, error.message existed
-                         //redux-form did not like this nesting, so just made
-                         //errorIsActive and errorMessage vars
+    // //error: state.error //old method where error.isActive, error.message existed
+    //                      //redux-form did not like this nesting, so just made
+    //                      //errorIsActive and errorMessage vars
   };
 };
 
@@ -25,11 +25,14 @@ const mapDispatchToProps = function(dispatch, props) {
 function validate(values) {
   const errors = {};
 
-  if(!values.email)
+
+  var emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if(!values.email || !emailRegEx.test(values.email))
     errors.email = 'Enter a valid email';
 
-  if(!values.password)
-    errors.password = 'Enter a valid password';
+  var badPassRegEx = /[^A-Za-z0-9]/;
+  if(!values.password || values.password.length < 8 || badPassRegEx.test(values.password))
+    errors.password = 'Enter a valid password ( >= 8 alphanumeric characters )';
 
   return errors;
 }

@@ -10,7 +10,7 @@ export const renderTextInput = field => {
     <div className={`form-group ${touched && invalid ? 'has-danger' : ''}`}>
       <label>{label}</label>
       <input type={type} className="form-control" {...input} />
-      <div className="text-help">
+      <div id={`${input.name}-text-help`} className="text-help">
         {touched ? error : ''}
       </div>
     </div>
