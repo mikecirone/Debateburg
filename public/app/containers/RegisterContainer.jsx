@@ -34,17 +34,34 @@ function validate(values) {
   if(!values.password || values.password.length < 8 || badPassRegEx.test(values.password))
     errors.password = 'Enter a valid password ( >= 8 alphanumeric characters )';
 
+  if(values.passwordConfirm !== values.password)
+    errors.passwordConfirm = 'Passwords do not match';
+
   return errors;
 }
 
-//redux-form v6 way: must do reduxForm() and! connect() --> https://github.com/erikras/redux-form/issues/1050
-//----------------------------------------
+
+//allows for overriding properties, used for testing
+//   (e.g.-detecting that onSubmit is not called when data is invalid)
+//---------------------------------------
 var RegisterContainer = reduxForm({
     form: 'RegisterForm',
-    fields: ['email', 'password'],
+    fields: ['email', 'password', 'passwordConfirm'],
     validate
   })(Register);
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
+const mergeProps = (stateProps, dispatchProps, ownProps) =>
+                      Object.assign({}, stateProps, dispatchProps, ownProps)
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(RegisterContainer);
+
+
+//redux-form v6 way: must do reduxForm() and! connect() --> https://github.com/erikras/redux-form/issues/1050
+//----------------------------------------
+// var RegisterContainer = reduxForm({
+//     form: 'RegisterForm',
+//     fields: ['email', 'password', 'passwordConfirm'],
+//     validate
+//   })(Register);
+// export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
 
 
 //redux-form v5 way

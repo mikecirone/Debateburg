@@ -38,7 +38,9 @@ var Register = React.createClass({
 
           <Field name="email" component={renderTextInput} type="text" label="Email"/>
 
-          <Field name="password" component={renderTextInput} type="text" label="Password"/>
+          <Field name="password" component={renderTextInput} type="password" label="Password"/>
+
+					<Field name="passwordConfirm" component={renderTextInput} type="password" label="Confirm Password"/>
 
           <button type="submit" className="btn btn-primary">
             Register
