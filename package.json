@@ -4,7 +4,7 @@
   "description": "Simple react app",
   "main": "index.js",
   "scripts": {
-    "test-client": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha -w --compilers js:babel-core/register public/app/tests/**/*.test.jsx",
+    "test-client": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha -w --compilers js:babel-core/register client/tests/**/*.test.jsx",
     "test-server": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
     "test-client-old": "karma start"
   },

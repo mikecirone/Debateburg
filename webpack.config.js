@@ -5,7 +5,7 @@ module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
     //load before app.jsx, as they are app.jsx dependencies
-    './public/app/app.jsx'
+    './client/app.jsx'
   ],
   externals: {
     jquery: 'jQuery'
@@ -18,30 +18,30 @@ module.exports = {
   ],
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './client/public/bundle.js'
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
     root: __dirname,
     alias: {
-      applicationStyle: 'public/app/styles/app.scss',
-      Login: 'public/app/components/Login.jsx',
-      loginReducer: 'public/app/reducers/loginReducer.jsx',
-      Register: 'public/app/components/Register.jsx',
-      RegisterContainer: 'public/app/containers/RegisterContainer.jsx',
-      registerActions: 'public/app/actions/registerActions.jsx',
-      registerReducer: 'public/app/reducers/registerReducer.jsx',
-      Home: 'public/app/components/Home.jsx',
-      Gameroom: 'public/app/components/Gameroom.jsx',
-      Main: 'public/app/components/Main.jsx',
-      ErrorModal: 'public/app/components/ErrorModal.jsx',
-      ErrorModalContainer: 'public/app/containers/ErrorModalContainer.jsx',
-      errorActions: 'public/app/actions/errorActions.jsx',
-      errorReducer: 'public/app/reducers/errorReducer.jsx',
-      actionTypes: 'public/app/actions/actionTypes.jsx',
-      configureStore: 'public/app/store/configureStore.jsx',
-      stateDefaults: 'public/app/store/stateDefaults.jsx',
-      seed: 'public/app/tests/seed.jsx',
+      applicationStyle: 'client/styles/app.scss',
+      Login: 'client/components/Login.jsx',
+      loginReducer: 'client/reducers/loginReducer.jsx',
+      Register: 'client/components/Register.jsx',
+      RegisterContainer: 'client/containers/RegisterContainer.jsx',
+      registerActions: 'client/actions/registerActions.jsx',
+      registerReducer: 'client/reducers/registerReducer.jsx',
+      Home: 'client/components/Home.jsx',
+      Gameroom: 'client/components/Gameroom.jsx',
+      Main: 'client/components/Main.jsx',
+      ErrorModal: 'client/components/ErrorModal.jsx',
+      ErrorModalContainer: 'client/containers/ErrorModalContainer.jsx',
+      errorActions: 'client/actions/errorActions.jsx',
+      errorReducer: 'client/reducers/errorReducer.jsx',
+      actionTypes: 'client/actions/actionTypes.jsx',
+      configureStore: 'client/store/configureStore.jsx',
+      stateDefaults: 'client/store/stateDefaults.jsx',
+      seed: 'client/tests/seed.jsx',
       //--------------start:
       //       used this link to resolve many warnings when calling webpack
       //       https://github.com/facebook/react/issues/4566

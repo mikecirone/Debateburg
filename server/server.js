@@ -13,7 +13,7 @@ const port = process.env.PORT;
 app.use(bodyParser.json()); //converts sent JSON to JS obj literal
 
 
-app.use(express.static('public'));
+app.use(express.static('client/public'));
 
 
 app.post('/users', (req, res) => {
