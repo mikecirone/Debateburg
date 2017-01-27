@@ -2,24 +2,13 @@ import { combineReducers } from 'redux';
 
 import * as actionTypes from 'actionTypes';
 
-var chatReducer = combineReducers({
-  messages: messagesReducer,
-  msgMaker: msgMakerReducer
-});
-
-var messagesReducer = (state = {
-  messages: [],
-  activeChannel: ''
-}, action) => {
+var messagesReducer = (state = [], action) => {
   switch(action.type) {
     case actionTypes.RECEIVE_MESSAGE:
-      return {
-        messages: [
-          ...state.messages,
+      return [
+          ...state,
           action.message
-        ],
-        activeChannel: "foo"
-      };
+        ];
     default:
       return state;
   }
@@ -29,13 +18,19 @@ var msgMakerReducer = (state = {
   text: ''
 }, action) => {
   switch(action.type) {
-    case actionTypes.CHAT_INPUT_SUBMIT:
+    case actionTypes.RESET_CHAT_INPUT:
       return {text: ''};
-    case actionTypes.CHAT_INPUT_CHANGE:
+    case actionTypes.CHANGE_CHAT_INPUT:
       return {text: action.text};
     default:
       return state;
   }
 };
+
+//TODO: add back in active channel
+var chatReducer = combineReducers({
+  messages: messagesReducer,
+  msgMaker: msgMakerReducer
+});
 
 export default chatReducer;

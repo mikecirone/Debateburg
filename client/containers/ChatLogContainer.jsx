@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
 
 var ChatLogContainer = React.createClass({
 
+  //TODO: consider moving this to mapDispatchToProps
   componentDidMount: function() {
     const { socket, dispatch } = this.props;
     socket.on('recv new message', msg => {
