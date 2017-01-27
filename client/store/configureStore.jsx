@@ -4,13 +4,15 @@ import loginReducer from 'loginReducer';
 import registerReducer from 'registerReducer';
 import errorReducer from 'errorReducer';
 import { reducer as formReducer } from 'redux-form';
+import chatReducer from 'chatReducer';
 
 export var configure = (initialState = {}) => {
   var reducer = combineReducers({
     login: loginReducer,
     register: registerReducer,
     error: errorReducer,
-    form: formReducer
+    form: formReducer,
+    chat: chatReducer
   });
 
   var store = createStore(reducer, initialState, compose(
