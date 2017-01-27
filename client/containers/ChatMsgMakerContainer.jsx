@@ -1,5 +1,7 @@
-var React, {PropTypes} = require('react');
+import React, { PropTypes } from 'react';
 var {connect} = require('react-redux');
+import uuid from 'node-uuid';
+import jQuery from 'jQuery';
 
 import ChatMsgMaker from 'ChatMsgMaker';
 
@@ -10,8 +12,9 @@ var ChatMsgMakerContainer = React.createClass({
   },
 
   render: function() {
+    const {handleSubmit} = this.props;
     return (
-      <ChatMsgMaker  />
+      <ChatMsgMaker onSubmit={handleSubmit} />
     );
   }
 });
@@ -25,14 +28,17 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = function(dispatch, props) {
   return {
     handleSubmit: function(event) {
-      // var msg = {
-      //   text: event.target.value.trim(),
-      //   channelID: "debatehall1"
-      //   // channelID: props.activeChannel
-      // };
-      props.socket.emit('new message', 'bar');
+      var msg = {
+        id: `${Date.now()}${uuid.v4()}`,
+        text: jQuery('#chat-input').val(),
+        // text: "foo",
+        channelID: "debatehall1"
+      };
+      props.socket.emit('new message', msg);
     }
   };
 };
 
 export default connect(null, mapDispatchToProps)(ChatMsgMakerContainer);
+
+// export default ChatMsgMakerContainer;

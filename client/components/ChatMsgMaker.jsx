@@ -5,15 +5,15 @@ var ChatMsgMaker = React.createClass({
     return { disabled: false }
   },
   propTypes: {
-    handleSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired
   },
   render: function() {
-    const {handleSubmit, disabled} = this.props;
+    const {onSubmit, disabled} = this.props;
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmit}>
         <fieldset disabled={disabled}>
-          <input type="text" autoFocus></input>
-          <button className="button">Enter</button>
+          <input id="chat-input" type="text" autoFocus></input>
+          <button type="submit" className="btn btn-primary">Enter</button>
         </fieldset>
       </form>
     );

@@ -2,6 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 
 import ChatLog from 'ChatLog';
+import * as chatActions from 'chatActions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,8 +14,9 @@ var ChatLogContainer = React.createClass({
 
   componentDidMount: function() {
     const { socket, dispatch } = this.props;
-    socket.on('new bc message', msg =>
-      dispatch(actions.receiveRawMessage(msg))
+    socket.on('recv new message', msg => {
+        dispatch(chatActions.receiveRawMessage(msg));
+      }
     );
   },
 

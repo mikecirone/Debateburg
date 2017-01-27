@@ -1,12 +1,16 @@
-var React, {PropTypes} = require('react');
+import React, { PropTypes } from 'react';
 
-export default ChatMsg = React.createClass({
+var ChatMsg = React.createClass({
   propTypes: {
-    msg: PropTypes.string.isRequired
+    message: PropTypes.object.isRequired
   },
   render: function() {
-    <li>
-      {this.props.msg}
-    </li>
+    return(
+      <li>
+        {this.props.message.text}
+      </li>
+    );
   }
 });
+
+export default ChatMsg;

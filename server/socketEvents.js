@@ -8,8 +8,7 @@ exports = module.exports = function(io) {
       socket.join(channel.name)
     })
     socket.on('new message', function(msg) {
-      console.log('foo');
-      socket.broadcast.to(msg.channelID).emit('new bc message', msg);
+      io.to(msg.channelID).emit('recv new message', msg);
     });
   });
 }

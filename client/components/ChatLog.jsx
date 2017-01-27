@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import ChatMsg from 'ChatMsg';
+
 var ChatLog = React.createClass({
 
   propTypes: {
@@ -8,12 +10,11 @@ var ChatLog = React.createClass({
 
   render: function() {
     const {messages} = this.props;
-
     return (
       <div id="chat-log">
         <ul>
           {messages.map(message =>
-            <ChatMessage message={message} />
+            <ChatMsg message={message} key={message.id} />
           )}
         </ul>
       </div>

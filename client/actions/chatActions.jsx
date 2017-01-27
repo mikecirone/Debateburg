@@ -1,8 +1,8 @@
 import * as actionTypes from 'actionTypes';
 
-export var receiveRawMessage = () => (message) {
+export var receiveRawMessage = (message) => {
   return {
-    type: types.RECEIVE_MESSAGE,
+    type: actionTypes.RECEIVE_MESSAGE,
     message
   };
 };
