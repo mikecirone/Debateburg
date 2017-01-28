@@ -4,7 +4,7 @@ import ChatLogContainer from 'ChatLogContainer';
 import ChatMsgMakerContainer from 'ChatMsgMakerContainer';
 
 import io from 'socket.io-client';
-const socket = io('', { path: '/api/chat' });
+const socket = io('', { path: '/chat' });
 
 var ChatContainer = React.createClass({
   render: function() {

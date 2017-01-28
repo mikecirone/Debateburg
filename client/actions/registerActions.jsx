@@ -1,7 +1,6 @@
 var axios = require('axios');
 
 import * as actionTypes from 'actionTypes';
-
 import {showError} from './errorActions';
 
 export var requestRegister = () => {
@@ -27,7 +26,7 @@ export var fetchRegister = (email, password) => {
   return (dispatch, getState) => {
     dispatch(requestRegister());
 
-    return axios.post('http://localhost:3000/users', {
+    return axios.post('/users', {
       email, password
     }).then( (res) => {
       dispatch(receiveRegisterSuccess(res.headers['x-auth']));

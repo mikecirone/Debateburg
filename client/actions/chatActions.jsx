@@ -1,6 +1,43 @@
-import uuid from 'node-uuid';
+import moment from 'moment';
+var axios = require('axios');
 
 import * as actionTypes from 'actionTypes';
+import {showError} from './errorActions';
+
+export var requestMessages = () => {
+  return {
+    type: actionTypes.FETCH_MESSAGES_REQUEST
+  };
+};
+
+export var receiveMessagesSuccess = (data) => {
+  return {
+    type: actionTypes.FETCH_MESSAGES_SUCCESS,
+    data
+  };
+};
+
+export var receiveMessagesFailure = () => {
+  return {
+    type: actionTypes.FETCH_MESSAGES_FAILURE
+  };
+};
+
+export var fetchMessages = () => {
+  return (dispatch, getState) => {
+    dispatch(requestMessages());
+
+    return axios.get('/messages')
+    .then( (res) => {
+      dispatch(receiveMessagesSuccess(res.data));
+    })
+    .catch( (err) => {
+      dispatch(receiveMessagesFailure());
+      dispatch(showError("Oops, the chat's messages could not be loaded."));
+    });
+
+  };
+};
 
 export var receiveRawMessage = (message) => {
   return {
@@ -21,12 +58,17 @@ export var resetChatInput = () => {
 export var submitChatInput = (text, socket) => {
   return (dispatch, getState) => {
     var msg = {
-      id: `${Date.now()}${uuid.v4()}`,
       text,
-      channelID: "debatehall1"
+      channelID: "debatehall1",
+      user: 'mike',
+      time: moment.utc().format('lll')
     };
     socket.emit('new message', msg);
     dispatch(resetChatInput());
+
+    //TODO: figure out why return is here
+    //TODO: add error handling, maybe
+    return axios.post('/messages', {...msg});
   };
 };
 

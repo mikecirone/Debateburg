@@ -10,12 +10,16 @@ var ChatLog = React.createClass({
 
   render: function() {
     const {messages} = this.props;
+
     return (
       <div id="chat-log">
         <ul>
-          {messages.map(message =>
-            <ChatMsg message={message} key={message.id} />
-          )}
+          {function() {     //note: have to use 'function' here
+              var items = [];
+              for(var i=0; i < messages.length; ++i)
+                items.push(<ChatMsg message={messages[i]} key={i} />);
+              return items;
+          }()}
         </ul>
       </div>
     );
