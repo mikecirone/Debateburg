@@ -29,6 +29,7 @@
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.9",
     "nock": "^9.0.2",
+    "node-uuid": "^1.4.7",
     "react": "^15.0.2",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.0.2",

@@ -1,4 +1,13 @@
 
+Having message entity create ID on client, since this is spawning point for
+message on database and message across clients via socket broadcast.
+  - Alternative of just using mongo's _id for ID made it so that <ChatMsg />
+    iteration code had to take care of making unique key; seemed to be worse
+    than above solution.
+
+1/30
+
+
 
 Removed catch()es after then()only promises returned by Mongoose queries/find()s
 

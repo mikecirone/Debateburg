@@ -18,16 +18,16 @@ app.use(bodyParser.json()); //converts sent JSON to JS obj literal
 
 app.use(express.static('client/public'));
 
-//load routers
+
 const messagesRouter = express.Router();
 const usersRouter = express.Router();
-// const channelRouter = express.Router();
+const channelsRouter = express.Router();
 require('./routes/messages.route')(messagesRouter);
-// require('./routes/channel_routes')(channelRouter);
+require('./routes/channels.route')(channelsRouter);
 require('./routes/users.route')(usersRouter);
 app.use(messagesRouter);
 app.use(usersRouter);
-// app.use('/api', channelRouter);
+app.use(channelsRouter);
 
 
 const server = app.listen(port, () => {
