@@ -1,4 +1,5 @@
-exports = module.exports = function(io) {
+
+const hookupChatEvents = (io) => {
   io.on('connection', function(socket) {
     socket.join('debatehall1');
     socket.on('leave channel', function(channel) {
@@ -7,11 +8,19 @@ exports = module.exports = function(io) {
     socket.on('join channel', function(channel) {
       socket.join(channel.name)
     })
-    socket.on('new chat item', function(msg) {
-      io.to(msg.channelID).emit('recv new chat item', msg);
-    });
-    socket.on('new channel item', function(msg) {
-      io.to(msg.channelID).emit('recv new channel item', msg);
+    socket.on('new item', function(msg) {
+      io.to(msg.channelID).emit('recv new item', msg);
     });
   });
-}
+};
+
+const hookupChannelEvents = (io) => {
+  io.on('connection', function(socket) {
+    socket.join('channels');
+    socket.on('new item', function(msg) {
+      io.to('channels').emit('recv new item', msg);
+    });
+  });
+};
+
+module.exports = {hookupChatEvents, hookupChannelEvents};

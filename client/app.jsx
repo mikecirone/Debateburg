@@ -8,7 +8,6 @@ import Login from 'Login';
 import RegisterContainer from 'RegisterContainer';
 import Home from 'Home';
 import ChatContainer from 'ChatContainer';
-import ChatMsgMakerContainer from 'ChatMsgMakerContainer';
 
 var store = require('configureStore').configure();
 
@@ -25,7 +24,6 @@ ReactDOM.render(
         <Route path="register" component={RegisterContainer} />
         <Route path="home" component={Home} />
         <Route path="chat" component={ChatContainer} />
-        <Route path="chatmsg_maker" component={ChatMsgMakerContainer} />
       </Route>
     </Router>
   </Provider>,

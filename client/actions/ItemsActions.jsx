@@ -33,15 +33,16 @@ export default function ItemsActions(itemType) {
       })
       .catch( (err) => {
         dispatch(this.receiveItemsFailure());
-        dispatch(showError(`Oops, the ${itemType} items could not be loaded.`));
+        //TODO: recover below fxality
+        // dispatch(showError(`Oops, the ${itemType} items could not be loaded.`));
       });
 
     };
   };
-  this.receiveRawItem = (message) => {
+  this.receiveRawItem = (item) => {
     return {
       type: itemType + '_' + actionTypeTemplates.RECEIVE_ITEM,
-      message
+      item
     };
   };
   this.resetItemInput = () => {
@@ -51,12 +52,12 @@ export default function ItemsActions(itemType) {
   };
   this.submitItemInput = (item, socket) => {
     return (dispatch, getState) => {
-      socket.emit(`new ${itemType} item`, item);
+      socket.emit(`new item`, item);
       dispatch(this.resetItemInput());
 
       //TODO: figure out why return is here
       //TODO: add error handling, maybe
-      return axios.post(`${itemType}_items`, {...item});
+      return axios.post(`${itemType}_items`, item);
     };
   };
   this.changeItemInput = (text) => {

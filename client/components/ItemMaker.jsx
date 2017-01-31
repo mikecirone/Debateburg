@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-var ChatMsgMaker = React.createClass({
+var ItemMaker = React.createClass({
   getDefaultProps: function() {
     return { disabled: false }
   },
@@ -8,12 +8,12 @@ var ChatMsgMaker = React.createClass({
     onSubmit: PropTypes.func.isRequired
   },
   render: function() {
-    const {value, onSubmit, onChange, disabled} = this.props;
+    const {itemType, value, onSubmit, onChange, disabled} = this.props;
     return (
       <form onSubmit={onSubmit}>
         <fieldset disabled={disabled}>
-          <input value={value} onChange={onChange} 
-            id="chat-input" type="text" autoFocus></input>
+          <input value={value} onChange={onChange}
+            id={`${itemType}-input`} type="text" autoFocus></input>
           <button type="submit" className="btn btn-primary">Enter</button>
         </fieldset>
       </form>
@@ -21,4 +21,4 @@ var ChatMsgMaker = React.createClass({
   }
 });
 
-export default ChatMsgMaker;
+export default ItemMaker;

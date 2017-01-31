@@ -8,7 +8,7 @@ export default function ItemsReducer(itemType) {
       case itemType + '_' + actionTypeTemplates.RECEIVE_ITEM:
         return [
             ...state,
-            action.message
+            action.item
           ];
       case itemType + '_' + actionTypeTemplates.FETCH_ITEMS_SUCCESS:
         return [...action.data.items];

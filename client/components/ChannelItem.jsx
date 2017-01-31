@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react';
 
-var ChatMsg = React.createClass({
+var ChannelItem = React.createClass({
   propTypes: {
-    message: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired
   },
   render: function() {
     return(
       <li>
-        {this.props.message.text}
+        {this.props.item.name}
       </li>
     );
   }
 });
 
-export default ChatMsg;
+export default ChannelItem;

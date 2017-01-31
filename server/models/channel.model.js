@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 var channelSchema = mongoose.Schema({
   name: { type:String, unique: true },
-  createdAt: Number,
+  createdAt: String,
   finishedAt: Number,    //for showing time that debate finished
   id: String
 });

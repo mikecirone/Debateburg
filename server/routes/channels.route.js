@@ -2,15 +2,15 @@ var {Channel} = require('./../models/channel.model');
 
 module.exports = (router) => {
 
-  router.get('/channels', (req, res) => {
+  router.get('/channels_items', (req, res) => {
     Channel.find({})
-      .then((channels) => {
-        res.send({channels});
+      .then((items) => {
+        res.send({items});
       })
       .catch((e) => res.status(500).send(e));
   });
 
-  router.post('/channels', (req, res) => {
+  router.post('/channels_items', (req, res) => {
     var channel = new Channel(req.body);
     channel.save()
       .then((doc) => {

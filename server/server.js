@@ -34,7 +34,14 @@ const server = app.listen(port, () => {
   console.log(`Started on port ${port}.`);
 });
 
-const io = new SocketIo(server, {path: '/chat'})
-const socketEvents = require('./socketEvents')(io);
+
+const {hookupChatEvents, hookupChannelEvents} = require('./socketEvents');
+
+const chatIo = new SocketIo(server, {path: '/chat'})
+hookupChatEvents(chatIo);
+
+const channelsIo = new SocketIo(server, {path: '/channels'})
+hookupChannelEvents(channelsIo);
+
 
 module.exports = {app};
