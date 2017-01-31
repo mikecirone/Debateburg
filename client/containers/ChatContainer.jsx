@@ -1,6 +1,6 @@
 var React = require('react');
 
-import ChatLogContainer from 'ChatLogContainer';
+import ChatLogContainer2 from 'ChatLogContainer2';
 import ChatMsgMakerContainer from 'ChatMsgMakerContainer';
 
 import io from 'socket.io-client';
@@ -10,7 +10,7 @@ var ChatContainer = React.createClass({
   render: function() {
     return (
       <div>
-        <ChatLogContainer socket={socket} />
+        <ChatLogContainer2 socket={socket} />
         <ChatMsgMakerContainer socket={socket} />
       </div>
     );

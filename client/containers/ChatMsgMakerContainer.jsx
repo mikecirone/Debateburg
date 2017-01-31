@@ -1,9 +1,14 @@
 import React, { PropTypes } from 'react';
 var {connect} = require('react-redux');
 import jQuery from 'jQuery';
+import moment from 'moment';
+import uuid from 'node-uuid';
 
 import ChatMsgMaker from 'ChatMsgMaker';
 import {changeChatInput, submitChatInput} from 'chatActions';
+import ItemsActions from 'ItemsActions';
+
+var chatActions = new ItemsActions('chat');
 
 var ChatMsgMakerContainer = React.createClass({
 
@@ -21,7 +26,8 @@ var ChatMsgMakerContainer = React.createClass({
 
 const mapStateToProps = function(state) {
   return {
-    value: state.chat.msgMaker.text
+    // value: state.chat.msgMaker.text
+    value: state.chat2.itemMaker.text
   };
 };
 
@@ -31,10 +37,17 @@ const mapDispatchToProps = function(dispatch, props) {
       //note: having presentational component have '#chat-input' coupling
       //      was path of least resistance for separating fxality,
       //      while also achieving fxality
-      dispatch(submitChatInput(jQuery('#chat-input').val(), props.socket));
+      dispatch(chatActions.submitItemInput({
+                                text: jQuery('#chat-input').val(),
+                                channelID: "debatehall1",
+                                user: 'mike',
+                                time: moment.utc().format('lll'),
+                                id: `${Date.now()}${uuid.v4()}`
+                              }, props.socket)
+      );
     },
     handleChange: function(event) {
-      dispatch(changeChatInput(event.target.value));
+      dispatch(chatActions.changeItemInput(event.target.value));
     }
   };
 };

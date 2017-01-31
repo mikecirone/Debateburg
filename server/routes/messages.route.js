@@ -2,15 +2,15 @@ var {Message} = require('./../models/message.model');
 
 module.exports = (router) => {
 
-  router.get('/messages', (req, res) => {
+  router.get('/chat_items', (req, res) => {
     Message.find({})
-      .then((messages) => {
-        res.send({messages});
+      .then((items) => {
+        res.send({items});
       })
       .catch((e) => res.status(500).send(e));
   });
 
-  router.post('/messages', (req, res) => {
+  router.post('/chat_items', (req, res) => {
     var message = new Message(req.body);
     message.save()
       .then((doc) => {

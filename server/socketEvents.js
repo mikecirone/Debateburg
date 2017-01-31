@@ -7,8 +7,11 @@ exports = module.exports = function(io) {
     socket.on('join channel', function(channel) {
       socket.join(channel.name)
     })
-    socket.on('new message', function(msg) {
-      io.to(msg.channelID).emit('recv new message', msg);
+    socket.on('new chat item', function(msg) {
+      io.to(msg.channelID).emit('recv new chat item', msg);
+    });
+    socket.on('new channel item', function(msg) {
+      io.to(msg.channelID).emit('recv new channel item', msg);
     });
   });
 }

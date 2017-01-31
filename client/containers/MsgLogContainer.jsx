@@ -5,6 +5,8 @@ import ChatLog from 'ChatLog';
 // import {fetchMessages, receiveRawMessage} from 'chatActions';
 import {fetch, receiveRawMessage} from 'chatActions';
 
+import actionsFactory from 'actionsFactory';
+
 const mapStateToProps = (state) => {
   return {
     // messages: state.chat.messages
@@ -12,7 +14,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-var ChatLogContainer = React.createClass({
+var MsgLogContainer = React.createClass({
 
   //TODO: consider moving this to mapDispatchToProps
   componentDidMount: function() {
