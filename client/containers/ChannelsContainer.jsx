@@ -1,23 +1,7 @@
 var React = require('react');
-import jQuery from 'jQuery';
-import moment from 'moment';
-import uuid from 'node-uuid';
 
-import createItemMakerContainer from 'createItemMakerContainer';
-import createItemLogContainer from 'createItemLogContainer';
-import ChannelItem from 'ChannelItem';
-
-const channelStr = 'channels';
-
-var ChannelsLogContainer = createItemLogContainer(channelStr, ChannelItem);
-
-var ChannelItemMakerContainer = createItemMakerContainer(channelStr, () => {
-  return {
-    name: jQuery(`#${channelStr}-input`).val(),
-    createdAt: moment.utc().format('lll'),
-    id: `${Date.now()}${uuid.v4()}`
-  };
-});
+import ChannelsLogContainer from 'ChannelsLogContainer';
+import ChannelItemMakerContainer from 'ChannelItemMakerContainer';
 
 import io from 'socket.io-client';
 const socket = io('', { path: '/channels' });

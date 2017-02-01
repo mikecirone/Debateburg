@@ -2,7 +2,7 @@ var axios = require('axios');
 
 import {actionTypeTemplates} from 'actionTypes';
 
-export default function ItemsActions(itemType) {
+export default function ItemsActions(itemType, itemFilter) {
   this.requestItems = () => {
     return {
       type: itemType + '_' + actionTypeTemplates.FETCH_ITEMS_REQUEST
@@ -19,13 +19,11 @@ export default function ItemsActions(itemType) {
       type: itemType + '_' + actionTypeTemplates.FETCH_ITEMS_FAILURE
     };
   };
-  this.fetchItems = () => {
+  this.fetchItems = (itemFilter) => {
     return (dispatch, getState) => {
       dispatch(this.requestItems());
 
-      var endpoint = `/${itemType}_items`;
-
-      return axios.get(endpoint)
+      return axios.get(`/${itemType}_items`, { params: itemFilter})
       .then( (res) => {
         dispatch(this.receiveItemsSuccess(res.data));
         //note: not sure how |this| is correct, given that function is

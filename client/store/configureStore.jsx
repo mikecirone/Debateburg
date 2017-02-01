@@ -3,11 +3,12 @@ var thunk = require('redux-thunk').default;
 import loginReducer from 'loginReducer';
 import registerReducer from 'registerReducer';
 import errorReducer from 'errorReducer';
+import activeChannelReducer from 'activeChannelReducer';
 import { reducer as formReducer } from 'redux-form';
-import ItemsReducer from 'ItemsReducer';
+import createItemsReducer from 'createItemsReducer';
 
-var chatReducer = new ItemsReducer('chat');
-var channelsReducer = new ItemsReducer('channels');
+var chatReducer = createItemsReducer('chat');
+var channelsReducer = createItemsReducer('channels');
 
 export var configure = (initialState = {}) => {
   var reducer = combineReducers({
@@ -15,8 +16,11 @@ export var configure = (initialState = {}) => {
     register: registerReducer,
     error: errorReducer,
     form: formReducer,
-    chat: chatReducer.reducer,
-    channels: channelsReducer.reducer
+    chat: chatReducer,
+    channels: channelsReducer,
+    //TODO: combine channels and activeChannel,
+    //      hard to do given createItemsReducer structure...
+    activeChannel: activeChannelReducer
   });
 
   var store = createStore(reducer, initialState, compose(

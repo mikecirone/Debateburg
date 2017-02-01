@@ -29,3 +29,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 );
+
+hashHistory.listen((location) => {
+  debugger;
+});

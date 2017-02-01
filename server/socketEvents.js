@@ -1,12 +1,11 @@
 
 const hookupChatEvents = (io) => {
   io.on('connection', function(socket) {
-    socket.join('debatehall1');
-    socket.on('leave channel', function(channel) {
-      socket.leave(channel)
+    socket.on('leave channel', function(channelID) {
+      socket.leave(channelID)
     })
-    socket.on('join channel', function(channel) {
-      socket.join(channel.name)
+    socket.on('join channel', function(channelID) {
+      socket.join(channelID)
     })
     socket.on('new item', function(msg) {
       io.to(msg.channelID).emit('recv new item', msg);

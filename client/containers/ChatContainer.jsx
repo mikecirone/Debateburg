@@ -1,38 +1,33 @@
 var React = require('react');
-import jQuery from 'jQuery';
-import moment from 'moment';
-import uuid from 'node-uuid';
-
-import createItemMakerContainer from 'createItemMakerContainer';
-import createItemLogContainer from 'createItemLogContainer';
-import ChatItem from 'ChatItem';
-
-var chatStr = 'chat';
-
-var ChatLogContainer = createItemLogContainer(chatStr, ChatItem);
-
-var ChatItemMakerContainer = createItemMakerContainer(chatStr, () => {
-  return {
-    text: jQuery(`#${chatStr}-input`).val(),
-    channelID: "debatehall1",
-    user: 'mike',
-    time: moment.utc().format('lll'),
-    id: `${Date.now()}${uuid.v4()}`
-  };
-});
-
 import io from 'socket.io-client';
-const socket = io('', { path: '/chat' });
+var {connect} = require('react-redux');
 
+import ChatLogContainer from 'ChatLogContainer';
+import ChatItemMakerContainer from 'ChatItemMakerContainer';
+
+const socket = io('', { path: '/chat' });
 var ChatContainer = React.createClass({
+
+  componentDidMount: function() {
+    socket.emit('join channel', this.props.activeChannel);
+  },
+  componentDidUnMount: function() {
+    socket.emit('leave channel', this.props.activeChannel);
+  },
   render: function() {
+    const {activeChannel} = this.props;
     return (
       <div>
-        <ChatLogContainer socket={socket} />
-        <ChatItemMakerContainer socket={socket} />
+        <ChatLogContainer socket={socket} activeChannel={activeChannel} />
+        <ChatItemMakerContainer socket={socket} activeChannel={activeChannel} />
       </div>
     );
   }
 });
 
-export default ChatContainer;
+export default connect((state) => {
+  return {
+    activeChannel: state.activeChannel
+  };
+}
+)(ChatContainer);

@@ -12,9 +12,16 @@ var ItemLog = React.createClass({
     return (
       <div id={`${itemType}-log`}>
         <ul>
-          {items.map(item =>
+          {function() {
+            var children = [];
+            for(var i=0; i < items.length; ++i) {
+              children.push(<ItemReactClass item={items[i]} key={i} />);
+            }
+            return children;
+          }()}
+          {/* {items.map(item =>
             <ItemReactClass item={item} key={item.id} />
-          )}
+          )} */}
         </ul>
       </div>
     );
