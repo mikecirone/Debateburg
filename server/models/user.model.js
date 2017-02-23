@@ -38,6 +38,8 @@ UserSchema.pre('save', function (next) {
   var user = this;
 
   if(user.isModified('password')) {
+    //bcrypt keeps track of its own salts, so this is diff
+    //than process.env.JWT_SECRET used for generating auth token
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(user.password, salt, (err, hash) => {
         user.password = hash;
