@@ -24,6 +24,14 @@ var ChatLogContainer = React.createClass({
     );
   },
 
+  //resolves this bug:
+  //  - go to channel, type a message, go back to channels list page,
+  //    go back to a channel, type a message -> 2 messages appear
+  componentWillUnmount: function() {
+    const { socket } = this.props;
+    socket.removeListener('recv new item');
+  },
+
   render: function() {
     return <ItemLog itemType={chatStr} ItemReactClass={ChatItem}
                                         items={this.props.items} />;
