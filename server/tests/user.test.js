@@ -3,7 +3,7 @@ const request = require('supertest');
 const {beforeEach} = require('mocha');
 
 const {app} = require('./../server');
-const {User} = require('./../models/user.model');
+const {User} = require('./../users/user.model.js');
 const {users, populateUsers} = require('./seed/user.seed');
 
 describe('User', () => {

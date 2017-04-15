@@ -6,9 +6,11 @@ const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
 const SocketIo = require('socket.io');
 
-//TODO: try to remove mongoose
-var {mongoose} = require('./db/mongoose');
-var {authenticate} = require('./middleware/authenticate');
+var {authenticate} = require('./users/authenticate');
+
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI);
 
 var app = express();
 const port = process.env.PORT;
@@ -22,9 +24,9 @@ app.use(express.static('client/public'));
 const chatItemsRouter = express.Router();
 const usersRouter = express.Router();
 const channelsRouter = express.Router();
-require('./routes/chatItems.route')(chatItemsRouter);
-require('./routes/channels.route')(channelsRouter);
-require('./routes/users.route')(usersRouter);
+require('./chat/chatItems.route.js')(chatItemsRouter);
+require('./channels/channels.route.js')(channelsRouter);
+require('./users/users.route.js')(usersRouter);
 app.use(chatItemsRouter);
 app.use(usersRouter);
 app.use(channelsRouter);
@@ -35,7 +37,8 @@ const server = app.listen(port, () => {
 });
 
 
-const {hookupChatEvents, hookupChannelEvents} = require('./socketEvents');
+const {hookupChatEvents} = require('./chat/chat.socketEvents');
+const {hookupChannelEvents} = require('./channels/channel.socketEvents');
 
 const chatIo = new SocketIo(server, {path: '/chat'})
 hookupChatEvents(chatIo);

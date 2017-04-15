@@ -1,6 +1,6 @@
 const {MongoClient, ObjectID} = require('mongodb');
 
-const {User} = require('./../../models/user.model');
+const {User} = require('./../../users/user.model.js');
 
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();

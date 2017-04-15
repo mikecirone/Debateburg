@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-var {User} = require('./../models/user.model');
+var {User} = require('./user.model.js');
 
 module.exports = (router) => {
   router.post('/users', (req, res) => {
