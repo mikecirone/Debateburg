@@ -1,4 +1,21 @@
 
+
+IOI - BUG:
+        - navigate to a channel page from /home
+        - press back
+        - make new channel
+        - result: 2 new channels show in channels log
+
+IOI - BUG: go to a chatlog with items and refresh page
+            - items go away
+      to fix: implement localStorage or cookies to save redux state upon pageload
+                http://stackoverflow.com/questions/34038726/redux-router-how-to-replay-state-after-refresh
+
+4/15
+
+
+
+
 Having message entity create ID on client, since this is spawning point for
 message on database and message across clients via socket broadcast.
   - Alternative of just using mongo's _id for ID made it so that <ChatMsg />
