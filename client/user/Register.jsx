@@ -23,7 +23,7 @@ var Register = React.createClass({
 
   render: function() {
 
-    const {isFetching, authToken, errorIsActive, errorMessage} = this.props;
+    const {isFetching, errorIsActive, errorMessage} = this.props;
     const { fields: {email, password}, handleSubmit} = this.props;
           //form props hooked up / made available by redux-form,
           //via reduxForm() in RegisterContainer,

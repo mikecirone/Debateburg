@@ -6,13 +6,16 @@ import Register from 'Register';
 
 const mapStateToProps = function(state) {
   return {
-    ...state.register,
+    ...state.user.register,
     ...state.error
     // //error: state.error //old method where error.isActive, error.message existed
     //                      //redux-form did not like this nesting, so just made
     //                      //errorIsActive and errorMessage vars
   };
 };
+
+import loginReducer from 'loginReducer';
+import registerReducer from 'registerReducer';
 
 const mapDispatchToProps = function(dispatch, props) {
   return {

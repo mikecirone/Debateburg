@@ -41,7 +41,7 @@ var Login = React.createClass({
 export default connect(
   (state) => {
     return {
-      ...state.login
+      ...state.user.login
     };
   }
 )(Login);

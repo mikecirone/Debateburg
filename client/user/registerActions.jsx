@@ -9,10 +9,13 @@ export var requestRegister = () => {
   };
 };
 
-export var receiveRegisterSuccess = (authToken) => {
+export var receiveRegisterSuccess = (data) => {
   return {
     type: actionTypes.FETCH_REGISTER_SUCCESS,
-    authToken
+    data: {
+      authToken: data.authToken,
+      email: data.email
+    }
   };
 };
 
@@ -29,8 +32,10 @@ export var fetchRegister = (email, password) => {
     return axios.post('/users', {
       email, password
     }).then( (res) => {
-      dispatch(receiveRegisterSuccess(res.headers['x-auth']));
-      // dispatch(receiveRegisterSuccess("something"));
+      dispatch(receiveRegisterSuccess({
+        authToken: res.headers['x-auth'],
+        email: res.data.email
+      }));
     })
     .catch( (err) => {
       dispatch(receiveRegisterFailure());

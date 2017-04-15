@@ -1,7 +1,8 @@
 var { createStore, combineReducers, applyMiddleware, compose } = require('redux');
 var thunk = require('redux-thunk').default;
-import loginReducer from 'loginReducer';
-import registerReducer from 'registerReducer';
+
+import * as actionTypes from 'actionTypes';
+import userReducer from 'userReducer';
 import errorReducer from 'errorReducer';
 import activeChannelReducer from 'activeChannelReducer';
 import { reducer as formReducer } from 'redux-form';
@@ -11,9 +12,8 @@ var chatReducer = createItemsReducer('chat');
 var channelsReducer = createItemsReducer('channels');
 
 export var configure = (initialState = {}) => {
-  var reducer = combineReducers({
-    login: loginReducer,
-    register: registerReducer,
+  var reducers = combineReducers({
+    user: userReducer,
     error: errorReducer,
     form: formReducer,
     chat: chatReducer,
@@ -23,7 +23,7 @@ export var configure = (initialState = {}) => {
     activeChannel: activeChannelReducer
   });
 
-  var store = createStore(reducer, initialState, compose(
+  var store = createStore(reducers, initialState, compose(
     applyMiddleware(thunk),  //note: must go before line below
     window.devToolsExtension ? window.devToolsExtension() : f => f
   ));
