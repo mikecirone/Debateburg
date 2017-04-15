@@ -1,7 +1,7 @@
 var axios = require('axios');
 
 import * as actionTypes from 'actionTypes';
-import {showError} from './errorActions';
+import {showError} from 'errorActions';
 
 export var requestRegister = () => {
   return {
