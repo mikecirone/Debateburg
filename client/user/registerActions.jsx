@@ -38,11 +38,14 @@ export var fetchRegister = (email, password) => {
       }));
     })
     .catch( (err) => {
-      dispatch(receiveRegisterFailure());
-      //needed for register reducer to set 'isFetching' back to false
 
-      dispatch(showError('Oops, that email is already taken.'));
-      //Only verification that should occur on server.
+      return new Promise((resolve, reject) => reject(err));
+
+      // dispatch(receiveRegisterFailure());
+      // //needed for register reducer to set 'isFetching' back to false
+      //
+      // dispatch(showError('Oops, that email is already taken.'));
+      // //Only verification that should occur on server.
     });
 
   };

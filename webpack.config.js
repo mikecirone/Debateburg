@@ -56,6 +56,8 @@ module.exports = {
       configureStore: 'client/store/configureStore.jsx',
       stateDefaults: 'client/store/stateDefaults.jsx',
       seed: 'client/tests/seed.jsx',
+      redirect: 'client/util/redirect.jsx',
+      Register2: 'client/user/Register2.jsx',
       //--------------start:
       //       used this link to resolve many warnings when calling webpack
       //       https://github.com/facebook/react/issues/4566
