@@ -1,47 +1,46 @@
-var React = require('react');
-var {connect} = require('react-redux');
+import React from 'react';
 
-var React = require('react');
-var ReactDOM = require('react-dom');
-var expect = require('expect');
-var $ = require('jQuery');
-var TestUtils = require('react-addons-test-utils');
+import connectSubmitForm from 'connectSubmitForm';
+import ErrorModal from 'ErrorModal';
+import {fetchLogin} from 'loginActions';
+import {redirectSubmitted} from 'redirect';
 
-var registerProps = {
-  isFetching: true, authToken: undefined, onRegister: undefined, error: {isActive: false}
-};
+class Login extends React.Component {
 
-var Login = React.createClass({
-  handleLogin: function() {
-    this.props.dispatch(actions.fetchLogin());
-  },
-  render: function() {
-    var {isFetching, url} = this.props;
+  onFieldChanged (event) {
+    this.setState({[event.target.name]: event.target.value})
+  }
 
-    function renderMsg() {
-      if(isFetching) {
-        return "Loading...";
-      } else {
-        return url;
-      }
-    }
+  onSubmit (event) {
+    event.preventDefault()
+    const { email, password } = this.state
+    this.props.onSubmit(email, password)
+  }
 
+  render () {
+    const { props: { isLoading, error, onCloseError } } = this
     return (
       <div>
-        <p>Login</p>
-        <p>{renderMsg()}</p>
-        <button className="button" onClick={this.handleLogin}>
-          Go
-        </button>
+        <h3>Login</h3>
+        <form onChange={::this.onFieldChanged} onSubmit={::this.onSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input className="form-control" type="text" name="email" />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input className="form-control" type="text" name="password" />
+          </div>
+          <button type="submit" className="btn btn-primary" disabled={isLoading}>
+            Register
+          </button>
+        </form>
+        {error && <ErrorModal title="Error" message={error} handleClose={onCloseError} />}
       </div>
-    );
+    )
   }
-});
+}
 
-export default connect(
-  (state) => {
-    return {
-      ...state.user.login
-    };
-  }
-)(Login);
+var RedirectLogin = redirectSubmitted('/home')(Login);
+
+export default connectSubmitForm(RedirectLogin, fetchLogin, "Oops, email or password is wrong.")

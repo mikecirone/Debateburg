@@ -22,6 +22,7 @@ ReactDOM.render(
       <Route path="/" component={Main}>
         <IndexRoute component={Login} />
         <Route path="register" component={Register} />
+        <Route path="login" component={Login} />
         <Route path="home" component={Home} />
         <Route path="chat" component={ChatContainer} />
       </Route>

@@ -26,7 +26,7 @@ module.exports = {
     alias: {
       applicationStyle: 'client/styles/app.scss',
       Login: 'client/user/Login.jsx',
-      loginReducer: 'client/user/loginReducer.jsx',
+      loginActions: 'client/user/loginActions.jsx',
       Register: 'client/user/Register.jsx',
       registerActions: 'client/user/registerActions.jsx',
       userReducer: 'client/user/userReducer.jsx',

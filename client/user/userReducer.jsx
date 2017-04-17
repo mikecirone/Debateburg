@@ -1,13 +1,11 @@
 import * as actionTypes from 'actionTypes';
-import loginReducer from 'loginReducer';
 
 function userReducer(state = {}, action) {
     return {
-        login: loginReducer(state.login, action),
         authToken: ((state = "", action) => {
                     switch (action.type) {
                         case actionTypes.FETCH_REGISTER_SUCCESS:
-                        //case actionTypes.FETCH_LOGIN_SUCCESS:
+                        case actionTypes.FETCH_LOGIN_SUCCESS:
                             return action.data.authToken;
                         default:
                             return state;
@@ -16,7 +14,7 @@ function userReducer(state = {}, action) {
         email: ((state = "", action) => {
                     switch (action.type) {
                         case actionTypes.FETCH_REGISTER_SUCCESS:
-                            //case actionTypes.FETCH_LOGIN_SUCCESS:
+                        case actionTypes.FETCH_LOGIN_SUCCESS:
                             return action.data.email;
                         default:
                             return state;
