@@ -4,3 +4,4 @@ server/config/config.json
 char*.jpg
 .idea
 *.iml
+npm-debug.log
