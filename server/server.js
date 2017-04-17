@@ -32,9 +32,7 @@ app.use(usersRouter);
 app.use(channelsRouter);
 
 
-const server = app.listen(port, () => {
-  console.log(`Started on port ${port}.`);
-});
+const server = app.listen(port);
 
 
 const {hookupChatEvents} = require('./chat/chat.socketEvents');

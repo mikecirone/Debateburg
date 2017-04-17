@@ -3,6 +3,7 @@ const _ = require('lodash');
 var {User} = require('./user.model.js');
 
 module.exports = (router) => {
+
   router.post('/users', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
     var user = new User(body);
@@ -15,4 +16,16 @@ module.exports = (router) => {
     })
     .catch( (e)=>res.status(400).send(e) );
   });
+
+  router.post('/users/login', (req, res) => {
+
+    User.findByCredentials(req.body.email, req.body.password).then((user) => {
+      return user.generateAuthToken().then((token) => {
+        res.header('x-auth', token).send(user);
+      });
+    }).catch((e) => {
+      res.status(400).send();
+    });
+  });
+
 }

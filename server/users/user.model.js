@@ -31,7 +31,9 @@ var UserSchema = new mongoose.Schema(
 UserSchema.methods.generateAuthToken = function () {
   var user = this;
   var token = jwt.sign({_id: user._id.toHexString()}, process.env.JWT_SECRET).toString();
-  return token;
+  return new Promise((resolve, reject) => {
+    resolve(token);
+  });
 };
 
 UserSchema.pre('save', function (next) {
@@ -63,6 +65,26 @@ UserSchema.statics.findByToken = function (token) {
 
   return User.findOne({
     _id: decoded._id
+  });
+};
+
+UserSchema.statics.findByCredentials = function (email, password) {
+  var User = this;
+
+  return User.findOne({email}).then((user) => {
+    if(!user)
+      return Promise.reject(); //will be caught be calling fx
+
+    //bcrypt no work with promises, so must wrap Promise around bcrypt fx
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(password, user.password, (err, result) => {
+        if(result) {
+          resolve(user);
+        } else {
+          reject();
+        }
+      });
+    });
   });
 };
 
