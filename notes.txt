@@ -1,11 +1,16 @@
 
 
-IOI - ENHANCE: for login/registration page forwarding, impl isolated form
+
+
+IOI - transfer validation behavior from RegisterContainer.jsx
+      to new Register.jsx
+        IOI - then clean up Register files and tests...
+
+IXI - ENHANCE: for login/registration page forwarding, impl isolated form
                forwarding component which won't pollute application state
                (https://github.com/reactjs/redux/issues/297)
                  - current impl is using app's redux store and thus
                    harder to reuse
-
 
 IOI - BUG:
         - navigate to a channel page from /home

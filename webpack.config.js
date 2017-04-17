@@ -28,9 +28,7 @@ module.exports = {
       Login: 'client/user/Login.jsx',
       loginReducer: 'client/user/loginReducer.jsx',
       Register: 'client/user/Register.jsx',
-      RegisterContainer: 'client/user/RegisterContainer.jsx',
       registerActions: 'client/user/registerActions.jsx',
-      registerReducer: 'client/user/registerReducer.jsx',
       userReducer: 'client/user/userReducer.jsx',
       Home: 'client/Home.jsx',
       ChatItem: 'client/chat/ChatItem.jsx',
@@ -57,7 +55,7 @@ module.exports = {
       stateDefaults: 'client/store/stateDefaults.jsx',
       seed: 'client/tests/seed.jsx',
       redirect: 'client/util/redirect.jsx',
-      Register2: 'client/user/Register2.jsx',
+      connectSubmitForm: 'client/util/connectSubmitForm.jsx',
       //--------------start:
       //       used this link to resolve many warnings when calling webpack
       //       https://github.com/facebook/react/issues/4566

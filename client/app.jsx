@@ -5,8 +5,7 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 import Main from 'Main';
 import Login from 'Login';
-import RegisterContainer from 'RegisterContainer';
-import Register2 from 'Register2';
+import Register from 'Register';
 import Home from 'Home';
 import ChatContainer from 'ChatContainer';
 
@@ -22,8 +21,7 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={Main}>
         <IndexRoute component={Login} />
-        <Route path="register" component={RegisterContainer} />
-        <Route path="register2" component={Register2} />
+        <Route path="register" component={Register} />
         <Route path="home" component={Home} />
         <Route path="chat" component={ChatContainer} />
       </Route>

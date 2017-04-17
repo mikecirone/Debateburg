@@ -1,10 +1,8 @@
 import * as actionTypes from 'actionTypes';
 import loginReducer from 'loginReducer';
-import registerReducer from 'registerReducer';
 
 function userReducer(state = {}, action) {
     return {
-        register: registerReducer(state.register, action),
         login: loginReducer(state.login, action),
         authToken: ((state = "", action) => {
                     switch (action.type) {

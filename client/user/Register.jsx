@@ -1,56 +1,48 @@
-var React = require('react');
+//https://github.com/reactjs/redux/issues/297
 
-import { Field, SubmissionError } from 'redux-form'
+import React from 'react';
 
-import ErrorModalContainer from 'ErrorModalContainer';
+import connectSubmitForm from 'connectSubmitForm';
+import ErrorModal from 'ErrorModal';
+import {fetchRegister} from 'registerActions';
+import {redirectSubmitted} from 'redirect';
 
-export const renderTextInput = field => {
-	const { input, label, type, meta: { touched, error }, invalid } = field
-	return (
-    <div className={`form-group ${touched && invalid ? 'has-danger' : ''}`}>
-      <label>{label}</label>
-      <input type={type} className="form-control" {...input} />
-      <div id={`${input.name}-text-help`} className="text-help">
-        {touched ? error : ''}
-      </div>
-    </div>
-	);
+class Register extends React.Component {
+
+    onFieldChanged (event) {
+        this.setState({[event.target.name]: event.target.value})
+    }
+
+    onSubmit (event) {
+        event.preventDefault()
+        const { email, password } = this.state
+        this.props.onSubmit(email, password)
+    }
+
+    render () {
+        const { props: { isLoading, error, onCloseError } } = this
+        return (
+            <div>
+                <h3>Register</h3>
+                <form onChange={::this.onFieldChanged} onSubmit={::this.onSubmit}>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input className="form-control" type="text" name="email" />
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input className="form-control" type="text" name="password" />
+                    </div>
+                    <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                        Register
+                    </button>
+                </form>
+                {error && <ErrorModal title="Error" message={error} handleClose={onCloseError} />}
+            </div>
+        )
+    }
 }
 
-//stateless functional component,
-//but needs to be React class to work with unit testing
-var Register = React.createClass({
+var RedirectRegister = redirectSubmitted('/home')(Register);
 
-  render: function() {
-
-    const {isFetching, errorIsActive, errorMessage} = this.props;
-    const { fields: {email, password}, handleSubmit} = this.props;
-          //form props hooked up / made available by redux-form,
-          //via reduxForm() in RegisterContainer,
-          //which acts like connect()
-
-    return (
-      <div>
-        <h3>Register</h3>
-        <p id="loading-text" className={!isFetching && 'invisible'}>Loading...</p>
-
-        <form onSubmit={handleSubmit}>
-
-          <Field name="email" component={renderTextInput} type="text" label="Email"/>
-
-          <Field name="password" component={renderTextInput} type="password" label="Password"/>
-
-					<Field name="passwordConfirm" component={renderTextInput} type="password" label="Confirm Password"/>
-
-          <button type="submit" className="btn btn-primary">
-            Register
-          </button>
-        </form>
-
-        {errorIsActive && <ErrorModalContainer message={errorMessage} />}
-      </div>
-    );
-  }
-});
-
-export default Register;
+export default connectSubmitForm(RedirectRegister, fetchRegister, "Oops, that email is already taken.")
