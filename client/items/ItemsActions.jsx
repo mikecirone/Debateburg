@@ -25,6 +25,7 @@ export default function ItemsActions(itemType, itemFilter) {
 
       return axios.get(`/${itemType}_items`, { params: itemFilter})
       .then( (res) => {
+        console.log(res);
         dispatch(this.receiveItemsSuccess(res.data));
         //note: not sure how |this| is correct, given that function is
         //      called from store ... but, it works.

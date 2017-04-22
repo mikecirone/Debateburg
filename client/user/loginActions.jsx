@@ -8,7 +8,8 @@ var receiveLoginSuccess = (data) => {
     data: {
       authToken: data.authToken,
       email: data.email,
-      username: data.username
+      username: data.username,
+      _id: data._id
     }
   };
 };
@@ -22,7 +23,8 @@ export var fetchLogin = (usernameOrEmail, password) => {
       dispatch(receiveLoginSuccess({
         authToken: res.headers['x-auth'],
         email: res.data.email,
-        username: res.data.username
+        username: res.data.username,
+        _id: res.data._id
       }));
     });
   }

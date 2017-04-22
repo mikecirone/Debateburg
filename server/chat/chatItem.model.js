@@ -1,13 +1,28 @@
 const mongoose = require('mongoose');
+const {Schema} = require('mongoose');
 
-var chatItemSchema = mongoose.Schema({
+var {User} = require('./../users/user.model.js');
+
+var ChatItemSchema = mongoose.Schema({
   channelID: String,
   text: String,
-  user: Object,
+  _user: { type: Schema.Types.ObjectId, ref: 'User' },
   time: String,
   id: String
 });
 
-var ChatItem = mongoose.model('ChatItem', chatItemSchema);
+ChatItemSchema.statics.findAndDenormalizeUser = ( filter ) => {
+  ChatItem.find(filter).lean()  //lean() changes items to js pojo
+    .then((items) => {
+      items.forEach((item) => {
+        User.findOne({_id: item.user_id}).then((user) => {
+          item.username = user.username;
+        })
+      });
+      return items;
+    });
+};
+
+var ChatItem = mongoose.model('ChatItem', ChatItemSchema);
 
 module.exports = {ChatItem};

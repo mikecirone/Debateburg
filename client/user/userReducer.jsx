@@ -28,7 +28,16 @@ function userReducer(state = {}, action) {
                         default:
                             return state;
                     }
-                })(state.username, action)
+                })(state.username, action),
+        _id: ((state = "", action) => {
+                  switch (action.type) {
+                      case actionTypes.FETCH_REGISTER_SUCCESS:
+                      case actionTypes.FETCH_LOGIN_SUCCESS:
+                          return action.data._id;
+                      default:
+                          return state;
+                  }
+              })(state._id, action)
     }
 }
 
