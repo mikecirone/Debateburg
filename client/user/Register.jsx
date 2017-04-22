@@ -15,8 +15,8 @@ class Register extends React.Component {
 
     onSubmit (event) {
         event.preventDefault()
-        const { email, password } = this.state
-        this.props.onSubmit(email, password)
+        const { email, username, password } = this.state
+        this.props.onSubmit(email, username, password)
     }
 
     render () {
@@ -28,6 +28,10 @@ class Register extends React.Component {
                     <div className="form-group">
                         <label>Email</label>
                         <input className="form-control" type="text" name="email" />
+                    </div>
+                    <div className="form-group">
+                        <label>Username</label>
+                        <input className="form-control" type="text" name="username" />
                     </div>
                     <div className="form-group">
                         <label>Password</label>
@@ -45,4 +49,4 @@ class Register extends React.Component {
 
 var RedirectRegister = redirectSubmitted('/home')(Register);
 
-export default connectSubmitForm(RedirectRegister, fetchRegister, "Oops, that email is already taken.")
+export default connectSubmitForm(RedirectRegister, fetchRegister, "Oops, that email or username is already taken.")

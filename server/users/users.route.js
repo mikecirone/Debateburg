@@ -5,7 +5,7 @@ var {User} = require('./user.model.js');
 module.exports = (router) => {
 
   router.post('/users', (req, res) => {
-    var body = _.pick(req.body, ['email', 'password']);
+    var body = _.pick(req.body, ['email', 'username', 'password']);
     var user = new User(body);
 
     user.save().then((/*|user|*/) => {

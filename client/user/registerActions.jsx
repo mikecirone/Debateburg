@@ -7,20 +7,22 @@ var receiveRegisterSuccess = (data) => {
         type: actionTypes.FETCH_REGISTER_SUCCESS,
         data: {
             authToken: data.authToken,
-            email: data.email
+            email: data.email,
+            username: data.username
         }
     };
 };
 
-export var fetchRegister = (email, password) => {
+export var fetchRegister = (email, username, password) => {
     return (dispatch, getState) => {
 
         return axios.post('/users', {
-            email, password
+            email, username, password
         }).then( (res) => {
             dispatch(receiveRegisterSuccess({
                 authToken: res.headers['x-auth'],
-                email: res.data.email
+                email: res.data.email,
+                username: res.data.username
             }));
         });
     }

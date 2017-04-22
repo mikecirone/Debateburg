@@ -4,25 +4,28 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
 
+// Getting unique email and username to work on MongoDB:
+// -------------------------------------------------------------
+// http://stackoverflow.com/questions/5535610/mongoose-unique-index-not-working
+// 1) remove all docs from collection
+//      - db.users.remove({})
+// 2) From the mongo shell, execute the command:  db.users.createIndex({email: 1}, {unique: true})
+
 var UserSchema = new mongoose.Schema(
   {
     email: {
       type: String,
       required: true,
       minLength: 1,
-      trim: true,
-      index: {
-        unique: true,
-        dropDups: true,
-      },
-      validate: {
-        validator: validator.isEmail, //validation fx
-        message: '{VALUE} is not a valid email'
-      }
+      trim: true
+    },
+    username: {
+      type: String,
+      required: true
     },
     password: {
       type: String,
-      require: true,
+      required: true,
       minLength: 8
     }
   }
