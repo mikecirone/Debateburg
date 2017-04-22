@@ -11,13 +11,13 @@ var itemsActions = new ItemsActions(chatStr);
 var ChatLogContainer = React.createClass({
   propTypes: {
     socket: PropTypes.object.isRequired,
-    activeChannel: PropTypes.string.isRequired
+    activeChannelId: PropTypes.string.isRequired
   },
 
   //TODO: consider moving this to mapDispatchToProps
   componentDidMount: function() {
-    const { socket, dispatch, activeChannel } = this.props;
-    dispatch(itemsActions.fetchItems({channelID: activeChannel}));
+    const { socket, dispatch, activeChannelId } = this.props;
+    dispatch(itemsActions.fetchItems({channelID: activeChannelId}));
     socket.on(`recv new item`, item => {
         dispatch(itemsActions.receiveRawItem(item));
       }

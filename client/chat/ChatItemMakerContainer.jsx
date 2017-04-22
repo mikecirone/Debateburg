@@ -13,7 +13,7 @@ var itemsActions = new ItemsActions(chatStr);
 var ChatItemMakerContainer = React.createClass({
   propTypes: {
     socket: PropTypes.object.isRequired,
-    activeChannel: PropTypes.string.isRequired
+    activeChannelId: PropTypes.string.isRequired
   },
   render: function() {
     const {handleSubmit, handleChange, value} = this.props;
@@ -28,8 +28,7 @@ export default connect(
   //mapStateToProps
   (state) => {
     return {
-      value: state.chat.itemMaker.text,
-      activeChannel: state.activeChannel
+      value: state.chat.itemMaker.text
     };
   },
   //mapDispatchToProps
@@ -39,7 +38,7 @@ export default connect(
         event.preventDefault();
         dispatch(itemsActions.submitItemInput({
           text: jQuery(`#${chatStr}-input`).val(),
-          channelID: props.activeChannel,
+          channelID: props.activeChannelId,
           user: 'mike',
           time: moment.utc().format('lll'),
           id: `${Date.now()}${uuid.v4()}`

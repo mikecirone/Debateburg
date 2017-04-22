@@ -1,9 +1,9 @@
 
 import * as actionTypes from 'actionTypes';
 
-export var setActiveChannel = (id) => {
+export var setActiveChannel = (data) => {
   return {
     type: actionTypes.SET_ACTIVE_CHANNEL,
-    id
+    data: { id: data.id, name: data.name }
   };
 };

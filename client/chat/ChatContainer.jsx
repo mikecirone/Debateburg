@@ -9,17 +9,19 @@ const socket = io('', { path: '/chat' });
 var ChatContainer = React.createClass({
 
   componentDidMount: function() {
-    socket.emit('join channel', this.props.activeChannel);
+    socket.emit('join channel', this.props.activeChannel.id);
   },
   componentDidUnMount: function() {
-    socket.emit('leave channel', this.props.activeChannel);
+    socket.emit('leave channel', this.props.activeChannel.id);
   },
   render: function() {
-    const {activeChannel} = this.props;
+    const activeChannelId = this.props.activeChannel.id;
+    const activeChannelName = this.props.activeChannel.name;
     return (
       <div>
-        <ChatLogContainer socket={socket} activeChannel={activeChannel} />
-        <ChatItemMakerContainer socket={socket} activeChannel={activeChannel} />
+        <h4>Channel - {activeChannelName}</h4>
+        <ChatLogContainer socket={socket} activeChannelId={activeChannelId} />
+        <ChatItemMakerContainer socket={socket} activeChannelId={activeChannelId} />
       </div>
     );
   }

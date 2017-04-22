@@ -23,7 +23,10 @@ export default connect(
   (dispatch, props) => {
     return {
       handleClick: (event) => {
-        dispatch(setActiveChannel(props.item.id));
+        dispatch(setActiveChannel({
+          id: props.item.id,
+          name: props.item.name
+        }));
       }
     };
   }

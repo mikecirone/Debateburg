@@ -1,9 +1,12 @@
 import * as actionTypes from 'actionTypes';
 
-var activeChannelReducer = (state = '', action) => {
+var activeChannelReducer = (state = {}, action) => {
   switch(action.type) {
     case actionTypes.SET_ACTIVE_CHANNEL:
-      return action.id;
+      return {
+        id: action.data.id,
+        name: action.data.name
+      };
     default:
       return state;
   }
