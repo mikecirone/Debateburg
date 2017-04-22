@@ -5,7 +5,6 @@ import * as actionTypes from 'actionTypes';
 import userReducer from 'userReducer';
 import errorReducer from 'errorReducer';
 import activeChannelReducer from 'activeChannelReducer';
-import { reducer as formReducer } from 'redux-form';
 import createItemsReducer from 'createItemsReducer';
 
 var chatReducer = createItemsReducer('chat');
@@ -15,7 +14,6 @@ export var configure = (initialState = {}) => {
   var reducers = combineReducers({
     user: userReducer,
     error: errorReducer,
-    form: formReducer,
     chat: chatReducer,
     channels: channelsReducer,
     //TODO: combine channels and activeChannel,

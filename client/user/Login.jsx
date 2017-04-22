@@ -13,8 +13,8 @@ class Login extends React.Component {
 
   onSubmit (event) {
     event.preventDefault()
-    const { email, password } = this.state
-    this.props.onSubmit(email, password)
+    const { usernameOrEmail, password } = this.state
+    this.props.onSubmit(usernameOrEmail, password)
   }
 
   render () {
@@ -24,8 +24,8 @@ class Login extends React.Component {
         <h3>Login</h3>
         <form onChange={::this.onFieldChanged} onSubmit={::this.onSubmit}>
           <div className="form-group">
-            <label>Email</label>
-            <input className="form-control" type="text" name="email" />
+            <label>Username or Email</label>
+            <input className="form-control" type="text" name="usernameOrEmail" />
           </div>
           <div className="form-group">
             <label>Password</label>
@@ -43,4 +43,4 @@ class Login extends React.Component {
 
 var RedirectLogin = redirectSubmitted('/home')(Login);
 
-export default connectSubmitForm(RedirectLogin, fetchLogin, "Oops, email or password is wrong.")
+export default connectSubmitForm(RedirectLogin, fetchLogin, "Oops, email, username or password is wrong.")
