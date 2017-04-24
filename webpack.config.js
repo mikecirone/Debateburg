@@ -56,6 +56,7 @@ module.exports = {
       seed: 'client/tests/seed.jsx',
       redirect: 'client/util/redirect.jsx',
       connectSubmitForm: 'client/util/connectSubmitForm.jsx',
+      Countdown: 'client/ui/Countdown.jsx',
       //--------------start:
       //       used this link to resolve many warnings when calling webpack
       //       https://github.com/facebook/react/issues/4566
