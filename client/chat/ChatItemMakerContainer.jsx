@@ -51,22 +51,4 @@ export default connect(
       username: state.user.username
     };
   },
-  //mapDispatchToProps
-  // (dispatch, props) => {
-  //   return {
-  //     handleSubmit: function(event) {
-  //       event.preventDefault();
-  //       dispatch(itemsActions.submitItemInput({
-  //         text: jQuery(`#${chatStr}-input`).val(),
-  //         channelID: props.activeChannelId,
-  //         user: 'mike',
-  //         time: moment.utc().format('lll'),
-  //         id: `${Date.now()}${uuid.v4()}`
-  //       }, props.socket));
-  //     },
-  //     handleChange: function(event) {
-  //       dispatch(itemsActions.changeItemInput(event.target.value));
-  //     }
-  //   };
-  // }
 )(ChatItemMakerContainer);

@@ -7,24 +7,24 @@ import ErrorModal from 'ErrorModal';
 import {fetchRegister} from 'registerActions';
 import {redirectSubmitted} from 'redirect';
 
-class Register extends React.Component {
+var Register = React.createClass({
 
-    onFieldChanged (event) {
-        this.setState({[event.target.name]: event.target.value})
-    }
+    onFieldChanged: function(event) {
+        this.setState({[event.target.name]: event.target.value});
+    },
 
-    onSubmit (event) {
-        event.preventDefault()
-        const { email, username, password } = this.state
-        this.props.onSubmit(email, username, password)
-    }
+    onSubmit: function(event) {
+        event.preventDefault();
+        const { email, username, password } = this.state;
+        this.props.onSubmit(email, username, password);
+    },
 
-    render () {
-        const { props: { isLoading, error, onCloseError } } = this
+    render: function() {
+        const { props: { isLoading, error, onCloseError } } = this;
         return (
             <div>
                 <h3>Register</h3>
-                <form onChange={::this.onFieldChanged} onSubmit={::this.onSubmit}>
+                <form onChange={this.onFieldChanged} onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Email</label>
                         <input className="form-control" type="text" name="email" />
@@ -45,8 +45,8 @@ class Register extends React.Component {
             </div>
         )
     }
-}
+});
 
 var RedirectRegister = redirectSubmitted('/home')(Register);
 
-export default connectSubmitForm(RedirectRegister, fetchRegister, "Oops, that email or username is already taken.")
+export default connectSubmitForm(RedirectRegister, fetchRegister, "Oops, that email or username is already taken.");
