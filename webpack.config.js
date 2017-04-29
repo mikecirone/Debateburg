@@ -30,7 +30,7 @@ module.exports = {
       Register: 'client/user/Register.jsx',
       registerActions: 'client/user/registerActions.jsx',
       userReducer: 'client/user/userReducer.jsx',
-      Home: 'client/Home.jsx',
+      Lobby: 'client/Lobby.jsx',
       ChatItem: 'client/chat/ChatItem.jsx',
       ChatItemMakerContainer: 'client/chat/ChatItemMakerContainer.jsx',
       ChatLogContainer: 'client/chat/ChatLogContainer.jsx',

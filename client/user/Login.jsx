@@ -41,6 +41,6 @@ class Login extends React.Component {
   }
 }
 
-var RedirectLogin = redirectSubmitted('/home')(Login);
+var RedirectLogin = redirectSubmitted('/lobby')(Login);
 
 export default connectSubmitForm(RedirectLogin, fetchLogin, "Oops, email, username or password is wrong.")

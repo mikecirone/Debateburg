@@ -12,7 +12,7 @@ var ChannelItem = React.createClass({
     const {handleClick} = this.props;
     return(
       <li>
-        <Link onClick={handleClick} to="/chat">{this.props.item.name}</Link>
+        <Link onClick={handleClick} to="/debate">{this.props.item.name}</Link>
       </li>
     );
   }

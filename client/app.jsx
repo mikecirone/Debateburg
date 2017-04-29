@@ -6,7 +6,7 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 import Main from 'Main';
 import Login from 'Login';
 import Register from 'Register';
-import Home from 'Home';
+import Lobby from 'Lobby';
 import ChatContainer from 'ChatContainer';
 
 var store = require('configureStore').configure();
@@ -23,8 +23,8 @@ ReactDOM.render(
         <IndexRoute component={Login} />
         <Route path="register" component={Register} />
         <Route path="login" component={Login} />
-        <Route path="home" component={Home} />
-        <Route path="chat" component={ChatContainer} />
+        <Route path="lobby" component={Lobby} />
+        <Route path="debate" component={ChatContainer} />
       </Route>
     </Router>
   </Provider>,

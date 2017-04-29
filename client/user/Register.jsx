@@ -47,6 +47,6 @@ var Register = React.createClass({
     }
 });
 
-var RedirectRegister = redirectSubmitted('/home')(Register);
+var RedirectRegister = redirectSubmitted('/lobby')(Register);
 
 export default connectSubmitForm(RedirectRegister, fetchRegister, "Oops, that email or username is already taken.");
