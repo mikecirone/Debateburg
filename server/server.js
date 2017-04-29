@@ -20,16 +20,14 @@ app.use(bodyParser.json()); //converts sent JSON to JS obj literal
 
 app.use(express.static('client/public'));
 
-
-const chatItemsRouter = express.Router();
-const usersRouter = express.Router();
-const channelsRouter = express.Router();
-require('./chat/chatItems.route.js')(chatItemsRouter);
-require('./channels/channels.route.js')(channelsRouter);
-require('./users/users.route.js')(usersRouter);
-app.use(chatItemsRouter);
+const {usersRouter} = require('./users/users.route.js');
 app.use(usersRouter);
+
+const {channelsRouter} = require('./channels/channels.route.js');
 app.use(channelsRouter);
+
+const {chatItemsRouter} = require('./chat/chatItems.route.js');
+app.use(chatItemsRouter);
 
 
 const server = app.listen(port);
