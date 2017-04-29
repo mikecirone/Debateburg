@@ -2,3 +2,17 @@
 body {
     background-color: #a3a3a3;
 }
+
+.clear {
+  clear: both;
+}
+
+hr {
+    border-top: 1px solid black;
+}
+
+.account-interface-container button,
+.account-interface-container p {
+  display: block;
+  float: right;
+}

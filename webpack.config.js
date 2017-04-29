@@ -29,6 +29,8 @@ module.exports = {
       loginActions: 'client/user/loginActions.jsx',
       Register: 'client/user/Register.jsx',
       registerActions: 'client/user/registerActions.jsx',
+      logoutActions: 'client/user/logoutActions.jsx',
+      AccountInterface: 'client/user/AccountInterface.jsx',
       userReducer: 'client/user/userReducer.jsx',
       Lobby: 'client/Lobby.jsx',
       ChatItem: 'client/chat/ChatItem.jsx',

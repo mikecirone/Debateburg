@@ -1,5 +1,4 @@
 var React = require('react');
-var {connect} = require('react-redux');
 
 import ChannelsContainer from 'ChannelsContainer';
 

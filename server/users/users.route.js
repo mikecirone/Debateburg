@@ -28,4 +28,8 @@ module.exports = (router) => {
     });
   });
 
+  router.post('/users/logout', (req, res) => {
+    res.send();
+  });
+
 }

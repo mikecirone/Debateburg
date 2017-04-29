@@ -10,6 +10,13 @@ function userReducer(state = {}, action) {
             username: action.data.username,
             _id: action.data._id
           };
+      case actionTypes.FETCH_LOGOUT_SUCCESS:
+          return {
+            authToken: "",
+            email: "",
+            username: "",
+            _id: ""
+          };
       default:
         return state
     }

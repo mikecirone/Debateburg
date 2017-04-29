@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var {Provider} = require('react-redux');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
+import AccountInterface from 'AccountInterface';
 import Main from 'Main';
 import Login from 'Login';
 import Register from 'Register';
@@ -23,8 +24,10 @@ ReactDOM.render(
         <IndexRoute component={Login} />
         <Route path="register" component={Register} />
         <Route path="login" component={Login} />
-        <Route path="lobby" component={Lobby} />
-        <Route path="debate" component={ChatContainer} />
+        <Route component={AccountInterface}>
+          <Route path="lobby" component={Lobby} />
+          <Route path="debate" component={ChatContainer} />
+        </Route>
       </Route>
     </Router>
   </Provider>,
