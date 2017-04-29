@@ -20,9 +20,6 @@ app.use(bodyParser.json()); //converts sent JSON to JS obj literal
 
 app.use(express.static('client/public'));
 
-const {usersRouter} = require('./users/users.route.js');
-app.use(usersRouter);
-
 const {channelsRouter} = require('./channels/channels.route.js');
 app.use(channelsRouter);
 
@@ -41,6 +38,11 @@ hookupChatEvents(chatIo);
 
 const channelsIo = new SocketIo(server, {path: '/channels'})
 hookupChannelEvents(channelsIo);
+
+
+require('./users/users.route.js')(app, channelsIo);
+//note: needing to hook up users route a diff way because ioServer
+//      and express server do not play nice with each other
 
 
 module.exports = {app};

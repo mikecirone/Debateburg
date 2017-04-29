@@ -8,7 +8,6 @@ chatItemsRouter.get('/chat_items', (req, res) => {
 
   ChatItem.find(req.query).populate('_user')
     .then((items) => {
-      console.log(items);
       res.send({items});
     })
     .catch((e) => res.status(500).send(e));
