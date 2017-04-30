@@ -29,7 +29,7 @@ module.exports = (server, ioServer) => {
   });
 
   server.post('/users/logout', (req, res) => {
-    ioServer.to('channels').emit('recv new item', {name: "shaka"});
+    ioServer.to('lobby').emit('recv new item', {name: "shaka"});
     res.send();
   });
 };

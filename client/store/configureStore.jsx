@@ -3,6 +3,7 @@ var thunk = require('redux-thunk').default;
 
 import * as actionTypes from 'actionTypes';
 import userReducer from 'userReducer';
+import lobbyReducer from 'lobbyReducer';
 import errorReducer from 'errorReducer';
 import activeChannelReducer from 'activeChannelReducer';
 import createItemsReducer from 'createItemsReducer';
@@ -13,6 +14,7 @@ var channelsReducer = createItemsReducer('channels');
 export var configure = (initialState = {}) => {
   var reducers = combineReducers({
     user: userReducer,
+    lobby: lobbyReducer,
     error: errorReducer,
     chat: chatReducer,
     channels: channelsReducer,

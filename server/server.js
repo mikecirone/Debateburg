@@ -32,12 +32,16 @@ const server = app.listen(port);
 
 const {hookupChatEvents} = require('./chat/chat.socketEvents');
 const {hookupChannelEvents} = require('./channels/channel.socketEvents');
+const {hookupLobbyEvents} = require('./lobby/lobby.socketEvents');
 
 const chatIo = new SocketIo(server, {path: '/chat'})
 hookupChatEvents(chatIo);
 
 const channelsIo = new SocketIo(server, {path: '/channels'})
 hookupChannelEvents(channelsIo);
+
+const LobbyIo = new SocketIo(server, {path: '/lobby'})
+hookupLobbyEvents(LobbyIo);
 
 
 require('./users/users.route.js')(app, channelsIo);

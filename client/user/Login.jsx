@@ -32,7 +32,7 @@ class Login extends React.Component {
             <input className="form-control" type="text" name="password" />
           </div>
           <button type="submit" className="btn btn-primary" disabled={isLoading}>
-            Register
+            Login
           </button>
         </form>
         {error && <ErrorModal title="Error" message={error} handleClose={onCloseError} />}

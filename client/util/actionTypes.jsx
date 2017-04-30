@@ -19,3 +19,5 @@ export const actionTypeTemplates = {
 };
 
 export const SET_ACTIVE_CHANNEL = 'SET_ACTIVE_CHANNEL';
+
+export const LOBBY_RECEIVE_USER = 'LOBBY_RECEIVE_USER';
