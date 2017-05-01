@@ -3,10 +3,16 @@ var users = [];
 const hookupLobbyEvents = (io) => {
   io.on('connection', function(socket) {
     socket.join('lobby');
-    socket.on('new user', function(usr) {
-      users.push(usr);
-      console.log(users);
-      socket.broadcast.to('lobby').emit('recv new user', usr);
+    socket.on('new user', function(user) {
+      users.push(user);
+      socket.broadcast.to('lobby').emit('recv new users', users);
+    });
+    socket.on('remove user', function(removedUser) {
+      console.log(removedUser);
+      users = users.filter((user) => {
+        return removedUser._id !== user._id;
+      });
+      socket.broadcast.to('lobby').emit('recv new users', users);
     });
   });
 };

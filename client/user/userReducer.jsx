@@ -11,12 +11,17 @@ function userReducer(state = {}, action) {
             _id: action.data._id
           };
       case actionTypes.FETCH_LOGOUT_SUCCESS:
-          return {
-            authToken: "",
-            email: "",
-            username: "",
-            _id: ""
-          };
+          // note: not doing this because Lobby.jsx needs user id
+          //       in its 'remove user' socket emit
+          //       access page will carry over old user's data,
+          //       so not secure yet, but will function as next login
+          //       will wipe out this data
+          // return {
+          //   authToken: "",
+          //   email: "",
+          //   username: "",
+          //   _id: ""
+          // };
       default:
         return state
     }
