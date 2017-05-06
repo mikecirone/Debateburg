@@ -34,8 +34,6 @@ module.exports = {
       userReducer: 'client/user/userReducer.jsx',
       Lobby: 'client/lobby/Lobby.jsx',
       UserItem: 'client/lobby/UserItem.jsx',
-      lobbyActions: 'client/lobby/lobbyActions.jsx',
-      lobbyReducer: 'client/lobby/lobbyReducer.jsx',
       ChatItem: 'client/chat/ChatItem.jsx',
       ChatItemMakerContainer: 'client/chat/ChatItemMakerContainer.jsx',
       ChatLogContainer: 'client/chat/ChatLogContainer.jsx',

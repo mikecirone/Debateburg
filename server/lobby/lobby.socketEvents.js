@@ -8,7 +8,6 @@ const hookupLobbyEvents = (io) => {
       socket.broadcast.to('lobby').emit('recv new users', users);
     });
     socket.on('remove user', function(removedUser) {
-      console.log(removedUser);
       users = users.filter((user) => {
         return removedUser._id !== user._id;
       });

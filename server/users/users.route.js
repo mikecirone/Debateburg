@@ -27,9 +27,4 @@ module.exports = (server, ioServer) => {
       res.status(400).send();
     });
   });
-
-  server.post('/users/logout', (req, res) => {
-    ioServer.to('lobby').emit('recv new item', {name: "shaka"});
-    res.send();
-  });
 };

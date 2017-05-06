@@ -4,8 +4,6 @@ var {connect} = require('react-redux');
 import io from 'socket.io-client';
 const socket = io('', { path: '/lobby' });
 
-import {receiveNewUser} from 'lobbyActions';
-
 var Lobby = React.createClass({
 
   getInitialState: function() {
@@ -13,9 +11,7 @@ var Lobby = React.createClass({
   },
 
   componentDidMount: function() {
-    const { dispatch } = this.props;
     socket.on(`recv new users`, users => {
-        console.log(users);
         this.setState( {users: users.filter((usr)=>usr._id!==this.props.user._id)} );
       }
     );
@@ -24,11 +20,15 @@ var Lobby = React.createClass({
 
   componentWillUnmount: function() {
     socket.emit('remove user', this.props.user);
+    socket.removeListener('recv new users');
+    //stops further calls to this.setState() callback for socket.on('recv new users')
+    //that keep going on after component unmounts...
+    //currently no way to have socket match lifecycle of react component..
   },
 
   render: function() {
-    var userList = this.state.users.map(function(user) {
-                      return <li key={user.username}>{user.username}</li>;
+    var userList = this.state.users.map(function(user, index) {
+                      return <li key={index}>{user.username}</li>;
                     });
     return (
       <div>
@@ -45,6 +45,5 @@ var Lobby = React.createClass({
 export default connect((state) => {
   return {
     user: state.user,
-    // users: state.lobby.users
   };
 })(Lobby);

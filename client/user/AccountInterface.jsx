@@ -1,19 +1,19 @@
 var React = require('react');
 var {connect} = require('react-redux');
+import { hashHistory } from 'react-router';
 
-import connectSubmitForm from 'connectSubmitForm';
-import {fetchLogout} from 'logoutActions';
-import {redirectSubmitted} from 'redirect';
+import {logout} from 'logoutActions';
 
 var AccountInterface = React.createClass({
 
   onLogout: function(event) {
     event.preventDefault();
-    this.props.onSubmit(this.props.username);
+    this.props.dispatch(logout());
+    hashHistory.push('/');
   },
 
   render: function() {
-    const { props: { children, username, isLoading } } = this;
+    const { props: { children,  user:{username}, isLoading } } = this;
     return (
       <div>
         <form onSubmit={this.onLogout} className="account-interface-container">
@@ -31,12 +31,8 @@ var AccountInterface = React.createClass({
   }
 });
 
-var ReduxedAccountInterface = connect((state) => {
+export default connect((state) => {
     return {
-        username: state.user.username
+        user: state.user
     };
 })(AccountInterface);
-
-var RedirectAccountInterface = redirectSubmitted('/login')(ReduxedAccountInterface);
-
-export default connectSubmitForm(RedirectAccountInterface, fetchLogout, "Oops, could not log you out.");
