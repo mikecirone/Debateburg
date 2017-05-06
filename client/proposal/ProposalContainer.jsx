@@ -10,8 +10,9 @@ var ProposalContainer = React.createClass({
   },
 
   render: function() {
-    const {challengee} = this.props;
-    return <Proposal handleSubmit={this.handleSubmit} challengee={challengee} />;
+    const {challengee, onClose} = this.props;
+    return (<Proposal onSubmit={this.handleSubmit} onClose={onClose}
+      challengee={challengee} />);
   }
 });
 

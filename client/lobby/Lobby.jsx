@@ -9,7 +9,7 @@ import ProposalContainer from 'ProposalContainer';
 var Lobby = React.createClass({
 
   getInitialState: function() {
-    return { users: [] };
+    return { users: [], proposing: false };
   },
 
   componentDidMount: function() {
@@ -33,6 +33,10 @@ var Lobby = React.createClass({
     this.setState({ proposing: true, challengee: user });
   },
 
+  handleCloseProposal: function() {
+    this.setState({ proposing: false });
+  },
+
   render: function() {
     const challenger = Object.assign({}, this.props.user, {socketid: socket.id});
     var thisRef = this;
@@ -48,7 +52,8 @@ var Lobby = React.createClass({
           {userList}
         </ul>
         {this.state.proposing && <ProposalContainer socket={socket}
-            challengee={this.state.challengee} challenger={challenger} />}
+            challengee={this.state.challengee} challenger={challenger}
+             onClose={this.handleCloseProposal} />}
       </div>
     );
   }

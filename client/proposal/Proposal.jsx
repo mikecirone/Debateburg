@@ -7,9 +7,6 @@ var Proposal = function(props) {
   return (
     <div>
       <Modal show={true} onHide={onClose}>
-        <Modal.Header>
-          <Modal.Title></Modal.Title>
-        </Modal.Header>
 
         <Modal.Body>
           <FormGroup controlId="formControlsTextarea">
@@ -19,7 +16,8 @@ var Proposal = function(props) {
           </FormGroup>
 
           <FormGroup>
-            <ControlLabel>Choose a side:<br /></ControlLabel>
+            <ControlLabel>Choose a side:</ControlLabel>
+            {<br />}
             <Radio name="radioGroup" inline> Pro </Radio>
             {' '}
             <Radio name="radioGroup" inline> Con </Radio>
@@ -27,7 +25,7 @@ var Proposal = function(props) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button bsStyle="primary" onClick={onSubmit}>Challenge {username}</Button>
+          <Button bsStyle="primary" onClick={onSubmit} block>Challenge {username}</Button>
         </Modal.Footer>
 
       </Modal>
