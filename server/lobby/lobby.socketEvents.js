@@ -17,8 +17,18 @@ const hookupLobbyEvents = (io) => {
       socket.emit('recv new users', users);
     });
 
-    socket.on('challenge', ({challengee, challenger}) => {
-      io.to(challengee.socketid).emit('recv challenge', challenger);
+    socket.on('challenge', ({challengee, challenger, resolution}) => {
+      io.to(challengee.socketid).emit('recv challenge', {challenger, resolution});
+    });
+    socket.on('reject challenge', challenger => {
+      io.to(challenger.socketid).emit('recv reject challenge');
+    });
+    socket.on('accept challenge', challenger => {
+      io.to(challenger.socketid).emit('recv accept challenge');
+    });
+
+    socket.on('invite to channel', ({id, name, challengee}) => {
+      io.to(challengee.socketid).emit('invite to channel', {id, name, challengee});
     });
   });
 };

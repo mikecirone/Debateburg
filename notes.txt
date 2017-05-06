@@ -1,6 +1,12 @@
 
 
 
+IOI - lobby/UserItem.jsx has some good code for forwarding user to channel..
+      use this for forwarding user to debate/chat/channel room
+      then:
+      IOI - delete UserItem.jsx
+
+
 IOI - transfer validation behavior from RegisterContainer.jsx
       to new Register.jsx
         IOI - then clean up Register files and tests...
