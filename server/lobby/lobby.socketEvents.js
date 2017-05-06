@@ -13,6 +13,9 @@ const hookupLobbyEvents = (io) => {
       });
       socket.broadcast.to('lobby').emit('recv new users', users);
     });
+    socket.on('get users', function() {
+      socket.emit('recv new users', users);
+    });
   });
 };
 

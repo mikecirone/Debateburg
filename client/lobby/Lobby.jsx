@@ -16,6 +16,7 @@ var Lobby = React.createClass({
       }
     );
     socket.emit('new user', this.props.user);
+    socket.emit('get users');
   },
 
   componentWillUnmount: function() {
