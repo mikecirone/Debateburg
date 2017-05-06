@@ -33,6 +33,8 @@ module.exports = {
       AccountInterface: 'client/user/AccountInterface.jsx',
       userReducer: 'client/user/userReducer.jsx',
       Lobby: 'client/lobby/Lobby.jsx',
+      Proposal: 'client/proposal/Proposal.jsx',
+      ProposalContainer: 'client/proposal/ProposalContainer.jsx',
       UserItem: 'client/lobby/UserItem.jsx',
       ChatItem: 'client/chat/ChatItem.jsx',
       ChatItemMakerContainer: 'client/chat/ChatItemMakerContainer.jsx',

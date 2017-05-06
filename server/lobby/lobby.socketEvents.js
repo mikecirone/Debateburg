@@ -16,6 +16,10 @@ const hookupLobbyEvents = (io) => {
     socket.on('get users', function() {
       socket.emit('recv new users', users);
     });
+
+    socket.on('challenge', ({challengee, challenger}) => {
+      io.to(challengee.socketid).emit('recv challenge', challenger);
+    });
   });
 };
 
