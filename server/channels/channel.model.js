@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 var channelSchema = mongoose.Schema({
-  name: { type:String, unique: true },
+  resolution: String,
   createdAt: String,
   finishedAt: Number,    //for showing time that debate finished
-  id: String
+  sides: Object,    //pro and con for user ids
+  id: { type:String, unique: true }
 });
 
 var Channel = mongoose.model('Channel', channelSchema);

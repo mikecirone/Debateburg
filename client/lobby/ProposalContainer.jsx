@@ -21,18 +21,20 @@ var ProposalContainer = React.createClass({
     socket.on("recv accept challenge", function() {
       var channelId = `${Date.now()}${uuid.v4()}`;
       axios.post('channels_items', {
-        name: thisRef.state.resolution,
+        resolution: thisRef.state.resolution,
+        sides: thisRef.state.sides,
         createdAt: moment.utc().format('lll'),
         id: channelId
       })
       .then(()=> {
-        var channelData = { id: channelId, name: thisRef.state.resolution };
+        var channelData = { id: channelId, resolution: thisRef.state.resolution };
         dispatch(setActiveChannel(channelData));
         var obj = { challengee };
         Object.assign(obj, channelData);
         socket.emit('invite to channel', obj);
         hashHistory.push('/debate');
-      });
+      })
+      .catch( e => console.log(e));
       //TODO: add error-handling
     });
     socket.on("recv reject challenge", function() {
@@ -51,7 +53,7 @@ var ProposalContainer = React.createClass({
     var side = (proInputChecked) ? PRO : CON;
     var sides = {
       pro: (side===PRO) ? challenger._id : challengee._id,
-      con: (side===PRO) ? challenger._id : challengee._id
+      con: (side===CON) ? challenger._id : challengee._id
     };
     this.setState({resolution, side, sides});
     socket.emit('challenge', {challengee, challenger, resolution, sides});

@@ -9,8 +9,8 @@ var ReceiveProposalContainer = React.createClass({
 
   componentDidMount: function() {
     const {socket, dispatch} = this.props;
-    socket.on('invite to channel', ({id, name, challengee}) => {
-      dispatch(setActiveChannel({id, name}));
+    socket.on('invite to channel', ({id, resolution, challengee}) => {
+      dispatch(setActiveChannel({id, resolution}));
       hashHistory.push('/debate');
     });
   },

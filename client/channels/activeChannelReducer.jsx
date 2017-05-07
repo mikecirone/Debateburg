@@ -5,7 +5,7 @@ var activeChannelReducer = (state = {}, action) => {
     case actionTypes.SET_ACTIVE_CHANNEL:
       return {
         id: action.data.id,
-        name: action.data.name
+        resolution: action.data.resolution
       };
     default:
       return state;

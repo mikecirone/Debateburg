@@ -17,11 +17,11 @@ var ChatContainer = React.createClass({
   },
   render: function() {
     const activeChannelId = this.props.activeChannel.id;
-    const activeChannelName = this.props.activeChannel.name;
+    const activeChannelResolution = this.props.activeChannel.resolution;
     return (
       <div>
         <Countdown seconds={15} start={true} />
-        <h4>Channel - {activeChannelName}</h4>
+        <h4>Channel - {activeChannelResolution}</h4>
         <ChatLogContainer socket={socket} activeChannelId={activeChannelId} />
         <ChatItemMakerContainer socket={socket} activeChannelId={activeChannelId} />
       </div>
