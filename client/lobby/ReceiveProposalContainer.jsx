@@ -27,9 +27,11 @@ var ReceiveProposalContainer = React.createClass({
   },
 
   render: function() {
-    const {challenger, resolution, onClose} = this.props;
+    const {challenger, resolution, sides, onClose} = this.props;
+    var isChallengerPro = (sides.pro===challenger._id) ? true : false;
     return (<ReceiveProposal onSubmit={this.handleSubmit} onReject={this.handleReject}
-                      challenger={challenger} resolution={resolution} />);
+                      challenger={challenger} resolution={resolution}
+                      isChallengerPro={isChallengerPro} />);
   }
 });
 

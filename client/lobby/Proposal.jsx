@@ -3,7 +3,7 @@ var {Modal, Button, FormGroup, ControlLabel, FormControl, Radio} = require('reac
 
 var Proposal = React.createClass({
     handleClick: function() {
-      this.props.onSubmit(this.resolutionInput.value);
+      this.props.onSubmit(this.resolutionInput.value, this.proInput.checked);
     },
     render: function() {
       const {challengee: {username}, resolutionInputRef,
@@ -23,7 +23,10 @@ var Proposal = React.createClass({
               <FormGroup>
                 <ControlLabel>Choose a side:</ControlLabel>
                 {<br />}
-                <Radio name="radioGroup" inline> Pro </Radio>
+                <Radio name="radioGroup" inline defaultChecked
+                  inputRef={(ref) => {this.proInput = ref}}>
+                     Pro
+                </Radio>
                 {' '}
                 <Radio name="radioGroup" inline> Con </Radio>
               </FormGroup>

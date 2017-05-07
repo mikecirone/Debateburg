@@ -7,11 +7,12 @@ var {connect} = require('react-redux');
 
 import Proposal from 'Proposal';
 import {setActiveChannel} from 'activeChannelActions';
+import {PRO, CON} from 'constants';
 
 var ProposalContainer = React.createClass({
 
   getInitialState: function() {
-    return { resolution: '' };
+    return { resolution: '', side: PRO, sides: null };
   },
 
   componentDidMount: function() {
@@ -45,10 +46,15 @@ var ProposalContainer = React.createClass({
     socket.removeListener("recv reject challenge");
   },
 
-  handleSubmit: function(resolution) {
-    this.setState({resolution});
+  handleSubmit: function(resolution, proInputChecked) {
     const {challengee, challenger, socket} = this.props;
-    socket.emit('challenge', {challengee, challenger, resolution});
+    var side = (proInputChecked) ? PRO : CON;
+    var sides = {
+      pro: (side===PRO) ? challenger._id : challengee._id,
+      con: (side===PRO) ? challenger._id : challengee._id
+    };
+    this.setState({resolution, side, sides});
+    socket.emit('challenge', {challengee, challenger, resolution, sides});
   },
 
   render: function() {

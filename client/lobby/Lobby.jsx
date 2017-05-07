@@ -12,7 +12,8 @@ var Lobby = React.createClass({
   getInitialState: function() {
     return { users: [], proposing: false,
              receivingPropsal: false, socketChallenger: null,
-              resolution: '' };
+              resolution: '', sides: null };
+              //resolution/sides are for funnelling into ReceiveProposalContainer
   },
 
   componentDidMount: function() {
@@ -20,9 +21,9 @@ var Lobby = React.createClass({
         this.setState( {users: users.filter((usr)=>usr._id!==this.props.user._id)} );
       }
     );
-    socket.on('recv challenge', ({challenger, resolution}) => {
+    socket.on('recv challenge', ({challenger, resolution, sides}) => {
       this.setState( {receivingProposal: true, socketChallenger: challenger,
-                      resolution } );
+                      resolution, sides } );
     });
     socket.emit('new user', Object.assign({}, this.props.user, {socketid: socket.id}));
     socket.emit('get users');
@@ -58,7 +59,7 @@ var Lobby = React.createClass({
                                 );
                     });
     const user = Object.assign({}, this.props.user, {socketid: socket.id});
-    const { state: {proposing, receivingProposal, resolution,
+    const { state: {proposing, receivingProposal, resolution, sides,
                     socketChallengee, socketChallenger} } = this;
     return (
       <div>
@@ -71,7 +72,8 @@ var Lobby = React.createClass({
              onClose={this.handleCloseProposal} />}
 
         {receivingProposal && <ReceiveProposalContainer socket={socket}
-           challenger={socketChallenger} challengee={user} resolution={resolution}
+           challenger={socketChallenger} challengee={user}
+           resolution={resolution} sides={sides}
            onClose={this.handleCloseReceiveProposal} />
         }
       </div>
