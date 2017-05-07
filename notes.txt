@@ -1,6 +1,21 @@
 
 
 
+IOI - after implementing debate session feature,
+      hook up pastDebates so that active debates do not show up
+        - debate session will stamp finishedAt, and this will be used as
+          logic for showing/not-showing debates
+      IOI - OR:
+        - make it so that active debates are seen as active and can be spectated
+          by others
+
+
+
+IOI - test going into a debate, then going into past debate, then back'ing
+      to the original debate
+        - confirm that message composer still shows
+
+
 IOI - transfer validation behavior from RegisterContainer.jsx
       to new Register.jsx
         IOI - then clean up Register files and tests...

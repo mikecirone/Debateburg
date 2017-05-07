@@ -10,8 +10,10 @@ var ChannelsContainer = React.createClass({
   render: function() {
     return (
       <div>
+        <h3>Debates</h3>
         <ChannelsLogContainer socket={socket} />
-        <ChannelItemMakerContainer socket={socket} />
+        {/* <ChannelItemMakerContainer socket={socket} /> */}
+        {/* not for production but good for testing */}
       </div>
     );
   }

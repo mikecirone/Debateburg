@@ -27,7 +27,9 @@ var ProposalContainer = React.createClass({
         id: channelId
       })
       .then(()=> {
-        var channelData = { id: channelId, resolution: thisRef.state.resolution };
+        var channelData = {
+          id: channelId, resolution: thisRef.state.resolution, isDebate: true
+        };
         dispatch(setActiveChannel(channelData));
         var obj = { challengee };
         Object.assign(obj, channelData);

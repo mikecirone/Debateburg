@@ -12,7 +12,7 @@ var ChannelItem = React.createClass({
     const {handleClick} = this.props;
     return(
       <li>
-        <Link onClick={handleClick} to="/debate">{this.props.item.name}</Link>
+        <Link onClick={handleClick} to="/debate">{this.props.item.resolution}</Link>
       </li>
     );
   }
@@ -25,7 +25,8 @@ export default connect(
       handleClick: (event) => {
         dispatch(setActiveChannel({
           id: props.item.id,
-          name: props.item.name
+          resolution: props.item.resolution,
+          isDebate: false
         }));
       }
     };

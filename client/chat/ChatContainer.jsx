@@ -10,20 +10,24 @@ const socket = io('', { path: '/chat' });
 var ChatContainer = React.createClass({
 
   componentDidMount: function() {
-    socket.emit('join channel', this.props.activeChannel.id);
+    const {activeChannelId, isDebate} = this.props;
+    if(isDebate)
+      socket.emit('join channel', activeChannelId);
   },
   componentDidUnMount: function() {
-    socket.emit('leave channel', this.props.activeChannel.id);
+    const {activeChannelId, isDebate} = this.props;
+    if(isDebate)
+      socket.emit('leave channel', activeChannelId);
   },
   render: function() {
-    const activeChannelId = this.props.activeChannel.id;
-    const activeChannelResolution = this.props.activeChannel.resolution;
+    const { resolution, activeChannelId, isDebate } = this.props;
     return (
       <div>
-        <Countdown seconds={15} start={true} />
-        <h4>Channel - {activeChannelResolution}</h4>
+        {/* <Countdown seconds={15} start={true} /> */}
+        <h4>Resolution: {resolution}</h4>
         <ChatLogContainer socket={socket} activeChannelId={activeChannelId} />
-        <ChatItemMakerContainer socket={socket} activeChannelId={activeChannelId} />
+        {isDebate && <ChatItemMakerContainer socket={socket}
+                                  activeChannelId={activeChannelId} />}
       </div>
     );
   }
@@ -31,7 +35,9 @@ var ChatContainer = React.createClass({
 
 export default connect((state) => {
   return {
-    activeChannel: state.activeChannel
+    resolution: state.activeChannel.resolution,
+    activeChannelId: state.activeChannel.id,
+    isDebate: state.activeChannel.isDebate
   };
 }
 )(ChatContainer);

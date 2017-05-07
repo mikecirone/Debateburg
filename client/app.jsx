@@ -9,6 +9,7 @@ import Login from 'Login';
 import Register from 'Register';
 import Lobby from 'Lobby';
 import ChatContainer from 'ChatContainer';
+import ChannelsContainer from 'ChannelsContainer';
 
 var store = require('configureStore').configure();
 
@@ -27,6 +28,7 @@ ReactDOM.render(
         <Route component={AccountInterface}>
           <Route path="lobby" component={Lobby} />
           <Route path="debate" component={ChatContainer} />
+          <Route path="pastDebates" component={ChannelsContainer} />
         </Route>
       </Route>
     </Router>

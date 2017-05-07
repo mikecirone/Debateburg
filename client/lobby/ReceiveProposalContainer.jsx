@@ -10,7 +10,7 @@ var ReceiveProposalContainer = React.createClass({
   componentDidMount: function() {
     const {socket, dispatch} = this.props;
     socket.on('invite to channel', ({id, resolution, challengee}) => {
-      dispatch(setActiveChannel({id, resolution}));
+      dispatch(setActiveChannel({id, resolution, isDebate: true}));
       socket.removeListener('invite to channel');
       //must remove here, removing from usual compUnmount spot led to
       //'invite to channel' event not occurring
