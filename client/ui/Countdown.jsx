@@ -35,6 +35,12 @@ export default React.createClass({
     }
   },
 
+  componentWillUnmount: function() {
+    if(this.intervalId)
+        clearInterval(this.intervalId);
+    //stops setState warning from executing if leaving page while countdown is ticking
+  },
+
   componentDidUpdate: function(prevProps, prevState) {
     if( prevState.minutes === '0' && prevState.seconds === '00' ) {
       clearInterval(this.intervalId);
