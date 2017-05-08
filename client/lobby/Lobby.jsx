@@ -55,7 +55,8 @@ var Lobby = React.createClass({
     var thisRef = this;
     var userList = this.state.users.map(function(user, index) {
                       return (<li onClick={ ()=>thisRef.handleSelectUser(user) }
-                                  key={index}>{user.username}</li>
+                                  key={index}
+                                  className="lobby-item">{user.username}</li>
                                 );
                     });
     const user = Object.assign({}, this.props.user, {socketid: socket.id});

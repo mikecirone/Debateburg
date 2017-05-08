@@ -19,16 +19,10 @@ var phaseReducer = (state = DONE, action) => {
       switch(state) {
         case DONE:
           return PRO_SUMMARY;
-        // case PRO_SUMMARY:
-        //   return CON_SUMMARY;
-        case PRO_SUMMARY: {
-          console.log('a');
+        case PRO_SUMMARY:
+          return PRO_SUMMARY2;
+        case PRO_SUMMARY2:
           return CON_SUMMARY;
-        }
-        case PRO_SUMMARY2: {
-          console.log('b');
-          return CON_SUMMARY;
-        }
         case CON_SUMMARY:
           return PRO_REBUTTAL;
         case PRO_REBUTTAL:
@@ -68,6 +62,8 @@ var debateReducer = (state = {}, action) => {
                               return false;
                             case PRO_SUMMARY:
                               return (isUserPro) ? true : false;
+                            case PRO_SUMMARY2:
+                              return (isUserPro) ? true : false;
                             case CON_SUMMARY:
                               return (isUserPro) ? false : true;
                             case PRO_REBUTTAL:
@@ -82,11 +78,12 @@ var debateReducer = (state = {}, action) => {
                             const phase = lesserState.phase;
                             switch(phase) {
                               case PRO_SUMMARY:
+                              case PRO_SUMMARY2:
                               case CON_SUMMARY:
-                                return 3;
+                                return 20;
                               case PRO_REBUTTAL:
                               case CON_REBUTTAL:
-                                return 2;
+                                return 10;
                               default:
                                   return 0;
                             }

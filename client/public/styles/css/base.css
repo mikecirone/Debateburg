@@ -16,3 +16,8 @@ hr {
   display: block;
   float: right;
 }
+
+.lobby-item {
+  cursor: pointer;
+  
+}
