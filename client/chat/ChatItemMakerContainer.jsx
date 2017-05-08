@@ -16,7 +16,7 @@ var ChatItemMakerContainer = React.createClass({
     activeChannelId: PropTypes.string.isRequired
   },
   render: function() {
-    const {socket, dispatch, activeChannelId,
+    const {socket, dispatch, activeChannelId, isUserActive,
            userId, username, value} = this.props;
 
       function handleSubmit(event) {
@@ -36,7 +36,7 @@ var ChatItemMakerContainer = React.createClass({
       }
 
     return (
-      <ItemMaker itemType={chatStr} value={value}
+      <ItemMaker itemType={chatStr} value={value} disabled={!isUserActive}
                  onSubmit={handleSubmit} onChange={handleChange} />
     );
   }
@@ -48,7 +48,8 @@ export default connect(
     return {
       value: state.chat.itemMaker.text,
       userId: state.user._id,
-      username: state.user.username
+      username: state.user.username,
+      isUserActive: state.debate.isUserActive
     };
   },
 )(ChatItemMakerContainer);

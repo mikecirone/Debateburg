@@ -28,9 +28,9 @@ const hookupLobbyEvents = (io) => {
       io.to(challenger.socketid).emit('recv accept challenge');
     });
 
-    socket.on('invite to channel', ({id, resolution, challengee}) => {
+    socket.on('invite to channel', ({id, resolution, challengee, sides}) => {
       io.to(challengee.socketid).emit('invite to channel',
-                                        {id, resolution, challengee});
+                                        {id, resolution, challengee, sides});
     });
   });
 };

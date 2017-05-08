@@ -6,6 +6,7 @@ import userReducer from 'userReducer';
 import errorReducer from 'errorReducer';
 import activeChannelReducer from 'activeChannelReducer';
 import createItemsReducer from 'createItemsReducer';
+import debateReducer from 'debateReducer';
 
 var chatReducer = createItemsReducer('chat');
 var channelsReducer = createItemsReducer('channels');
@@ -18,7 +19,8 @@ export var configure = (initialState = {}) => {
     channels: channelsReducer,
     //TODO: combine channels and activeChannel,
     //      hard to do given createItemsReducer structure...
-    activeChannel: activeChannelReducer
+    activeChannel: activeChannelReducer,
+    debate: debateReducer
   });
 
   var store = createStore(reducers, initialState, compose(

@@ -8,6 +8,8 @@ var {connect} = require('react-redux');
 import Proposal from 'Proposal';
 import {setActiveChannel} from 'activeChannelActions';
 import {PRO, CON} from 'constants';
+//TODO: move constants to debateConstants
+import {setDebate} from 'debateActions';
 
 var ProposalContainer = React.createClass({
 
@@ -16,7 +18,7 @@ var ProposalContainer = React.createClass({
   },
 
   componentDidMount: function() {
-    const { props: {socket, onClose, dispatch, challengee} } = this;
+    const { props: {socket, onClose, dispatch, challengee, user} } = this;
     var thisRef = this;
     socket.on("recv accept challenge", function() {
       var channelId = `${Date.now()}${uuid.v4()}`;
@@ -31,8 +33,11 @@ var ProposalContainer = React.createClass({
           id: channelId, resolution: thisRef.state.resolution, isDebate: true
         };
         dispatch(setActiveChannel(channelData));
+        dispatch(setDebate({ sides: thisRef.state.sides, user }));
+        //TODO: get rid of inserting user this way, re-form reducer logic
+        //      to deduce isUserActive by viewing debate and user lesser states
         var obj = { challengee };
-        Object.assign(obj, channelData);
+        Object.assign(obj, channelData, {sides: thisRef.state.sides});
         socket.emit('invite to channel', obj);
         hashHistory.push('/debate');
       })
@@ -54,8 +59,8 @@ var ProposalContainer = React.createClass({
     const {challengee, challenger, socket} = this.props;
     var side = (proInputChecked) ? PRO : CON;
     var sides = {
-      pro: (side===PRO) ? challenger._id : challengee._id,
-      con: (side===CON) ? challenger._id : challengee._id
+      pro: (side===PRO) ? challenger : challengee,
+      con: (side===CON) ? challenger : challengee
     };
     this.setState({resolution, side, sides});
     socket.emit('challenge', {challengee, challenger, resolution, sides});
@@ -68,4 +73,8 @@ var ProposalContainer = React.createClass({
   }
 });
 
-export default connect()(ProposalContainer);
+export default connect((state)=>{
+  return {
+    user: state.user
+  };
+})(ProposalContainer);

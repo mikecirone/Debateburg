@@ -4,7 +4,7 @@ var {connect} = require('react-redux');
 
 import ChatLogContainer from 'ChatLogContainer';
 import ChatItemMakerContainer from 'ChatItemMakerContainer';
-import Countdown from 'Countdown';
+import DebateInterface from 'DebateInterface';
 
 const socket = io('', { path: '/chat' });
 var ChatContainer = React.createClass({
@@ -23,7 +23,7 @@ var ChatContainer = React.createClass({
     const { resolution, activeChannelId, isDebate } = this.props;
     return (
       <div>
-        {/* <Countdown seconds={15} start={true} /> */}
+        <DebateInterface />
         <h4>Resolution: {resolution}</h4>
         <ChatLogContainer socket={socket} activeChannelId={activeChannelId} />
         {isDebate && <ChatItemMakerContainer socket={socket}
