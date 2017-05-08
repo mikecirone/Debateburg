@@ -16,10 +16,7 @@ var Countdown = React.createClass({
 
   calculateAndGetState: function() {
     var duration = moment.duration(this.endMoment.diff(moment()));
-    console.log(this.endMoment);
-    console.log(moment());
     var seconds = duration.seconds().toString();
-    // console.log(seconds);
     if(seconds.length===1) seconds = "0" + seconds;
     return {
       minutes: duration.minutes().toString(),
@@ -28,30 +25,72 @@ var Countdown = React.createClass({
   },
 
   componentDidMount: function() {
-    this.doNext();
+    this.cueDoNext();
+  },
+
+  // doNext: function() {
+  //   const {dispatch, countdownTime, phase} = this.props;
+  //   this.start(countdownTime);
+  //   var thisRef = this;
+  //   this.timeoutId = setTimeout(()=> {
+  //     // console.log('foo');
+  //     dispatch(nextPhase());
+  //     if(phase===DONE)
+  //       hashHistory.push('/pastDebates');
+  //     thisRef.doNext();
+  //   }, countdownTime * 1000);
+  // },
+  //
+  // start: function(countdownTime) {
+  //   if(this.intervalId)
+  //       clearInterval(this.intervalId);
+  //   this.endMoment = moment().add(countdownTime, 'seconds');
+  //   this.setState(this.calculateAndGetState());
+  //   this.intervalId = setInterval(() => {
+  //       // console.log('bar');
+  //       this.setState(this.calculateAndGetState());
+  //     }, 1000);
+  // },
+
+  cueDoNext: function() {
+    var thisRef = this;
+    setTimeout(()=> {
+      thisRef.doNext();
+    }, 200);
   },
 
   doNext: function() {
-    const {dispatch, countdownTime, phase} = this.props;
+    var {countdownTime, phase} = this.props;
+    console.log("before dispatch: ", phase);
+    this.props.dispatch(nextPhase());
+    phase = this.props.phase;
+    console.log("after dispatch: ", phase);
+    if(phase===DONE)
+      hashHistory.push('/pastDebates');
     this.start(countdownTime);
-    var thisRef = this;
-    this.timeoutId = setTimeout(()=> {
-      dispatch(nextPhase());
-      if(phase===DONE)
-        hashHistory.push('/pastDebates');
-      thisRef.doNext();
-    }, countdownTime * 1000);
   },
 
   start: function(countdownTime) {
-    if(this.intervalId)
-        clearInterval(this.intervalId);
-        // console.log(countdownTime);
     this.endMoment = moment().add(countdownTime, 'seconds');
     this.setState(this.calculateAndGetState());
+    this.countdownTimeCopy = countdownTime;
     this.intervalId = setInterval(() => {
+        // console.log('bar');
         this.setState(this.calculateAndGetState());
+        --this.countdownTimeCopy;
+        if(this.countdownTimeCopy===0) {
+          clearInterval(this.intervalId);
+          this.doNext();
+        }
       }, 1000);
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    console.log(nextProps.phase);
+  },
+
+  beginStart: function() {
+    this.doNext();
   },
 
   // reset: function() {
@@ -60,10 +99,20 @@ var Countdown = React.createClass({
   //   this.start();
   // },
 
-  componentWillUnmount: function() {
-    if(this.intervalId) clearInterval(this.intervalId);
+  clear: function() {
+    if(this.intervalId) {
+      // console.log('shaka');
+      clearInterval(this.intervalId);
+    }
     //stops setState warning from executing if leaving page while countdown is ticking
-    if(this.timeoutId) clearTimeout(this.timeoutId);
+    if(this.timeoutId) {
+      // console.log('zulu');
+      clearTimeout(this.timeoutId);
+    }
+  },
+
+  componentWillUnmount: function() {
+    this.clear();
   },
 
   // componentDidUpdate: function(prevProps, prevState) {
@@ -82,7 +131,10 @@ var Countdown = React.createClass({
   render: function() {
     const { minutes, seconds } = this.state;
     return (
-      <p>{minutes}:{seconds}</p>
+      <div>
+        <p>{minutes}:{seconds}</p>
+        <button onClick={()=>this.cueDoNext()}>cue do next</button>
+      </div>
     );
   }
 

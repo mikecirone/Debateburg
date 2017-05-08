@@ -1,7 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 
-import {DONE, PRO_SUMMARY, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL} from 'debateConstants';
+import {DONE, PRO_SUMMARY, PRO_SUMMARY2, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL} from 'debateConstants';
 import Countdown from 'Countdown';
 import {nextPhase} from 'debateActions';
 import { hashHistory } from 'react-router';
@@ -11,6 +11,8 @@ var DebateInterface = React.createClass({
   getPhaseStr: function(phase) {
     switch(phase) {
       case PRO_SUMMARY:
+        return "Pro Summary";
+      case PRO_SUMMARY2:
         return "Pro Summary";
       case CON_SUMMARY:
         return "Con Summary";

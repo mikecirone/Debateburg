@@ -1,5 +1,5 @@
 import * as actionTypes from 'actionTypes';
-import {DONE, PRO_SUMMARY, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL} from 'debateConstants';
+import {DONE, PRO_SUMMARY, PRO_SUMMARY2, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL} from 'debateConstants';
 
 var isUserProReducer = (state = false, action) => {
   switch(action.type) {
@@ -19,8 +19,16 @@ var phaseReducer = (state = DONE, action) => {
       switch(state) {
         case DONE:
           return PRO_SUMMARY;
-        case PRO_SUMMARY:
+        // case PRO_SUMMARY:
+        //   return CON_SUMMARY;
+        case PRO_SUMMARY: {
+          console.log('a');
           return CON_SUMMARY;
+        }
+        case PRO_SUMMARY2: {
+          console.log('b');
+          return CON_SUMMARY;
+        }
         case CON_SUMMARY:
           return PRO_REBUTTAL;
         case PRO_REBUTTAL:
@@ -64,8 +72,8 @@ var debateReducer = (state = {}, action) => {
                               return (isUserPro) ? false : true;
                             case PRO_REBUTTAL:
                               return (isUserPro) ? true :  false;
-                            case CON_SUMMARY:
-                              return (isUserPro) ? true : false;
+                            case CON_REBUTTAL:
+                              return (isUserPro) ? false : true;
                             default:
                               return false;
                           }
@@ -75,10 +83,10 @@ var debateReducer = (state = {}, action) => {
                             switch(phase) {
                               case PRO_SUMMARY:
                               case CON_SUMMARY:
-                                return 5;
+                                return 3;
                               case PRO_REBUTTAL:
                               case CON_REBUTTAL:
-                                return 10;
+                                return 2;
                               default:
                                   return 0;
                             }
