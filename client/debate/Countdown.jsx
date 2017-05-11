@@ -4,7 +4,7 @@ var {connect} = require('react-redux');
 import { hashHistory } from 'react-router';
 
 import {nextPhase} from 'debateActions';
-import {DONE, PRO_SUMMARY, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL} from 'debateConstants';
+import {PRO_SUMMARY, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL, DONE} from 'debateConstants';
 
 var Countdown = React.createClass({
 
@@ -25,11 +25,14 @@ var Countdown = React.createClass({
   },
 
   componentDidMount: function() {
-    this.doNext();
+    setTimeout(()=> {
+        this.doNext();
+    }, 1);
+    //NOTE: changing props with dispatch from within didMount
+    //      makes for a lot of buginess with phase states
   },
 
   doNext: function() {
-    this.props.dispatch(nextPhase());
     const {phase, countdownTime} = this.props;
     if(phase===DONE)
       hashHistory.push('/pastDebates');
@@ -45,6 +48,7 @@ var Countdown = React.createClass({
         --this.countdownTimeCopy;
         if(this.countdownTimeCopy===0) {
           clearInterval(this.intervalId);
+          this.props.dispatch(nextPhase());
           this.doNext();
         }
       }, 1000);

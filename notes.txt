@@ -1,5 +1,8 @@
 
 
+IOI - try having sockets for lobby, chat and channels be accessible
+      from redux, so I don't have to pass socket as prop so much
+
 
 IOI - after implementing debate session feature,
       hook up pastDebates so that active debates do not show up

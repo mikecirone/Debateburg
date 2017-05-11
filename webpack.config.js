@@ -53,6 +53,7 @@ module.exports = {
       ItemsActions: 'client/items/ItemsActions.jsx',
       createItemsReducer: 'client/items/createItemsReducer.jsx',
       DebateInterface: 'client/debate/DebateInterface.jsx',
+      Countdown: 'client/debate/Countdown.jsx',
       debateActions: 'client/debate/debateActions.jsx',
       debateReducer: 'client/debate/debateReducer.jsx',
       debateConstants: 'client/debate/debateConstants.jsx',
@@ -67,7 +68,6 @@ module.exports = {
       seed: 'client/tests/seed.jsx',
       redirect: 'client/util/redirect.jsx',
       connectSubmitForm: 'client/util/connectSubmitForm.jsx',
-      Countdown: 'client/ui/Countdown.jsx',
       constants: 'client/util/constants.jsx',
       //--------------start:
       //       used this link to resolve many warnings when calling webpack
