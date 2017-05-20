@@ -1,23 +1,344 @@
 
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: none;
+}
+
 body {
-    background-color: #a3a3a3;
+    background-color: #ddd;
+    background: linear-gradient(#ddd, #959595);
+    font-size: 4vw;
+    font-family: serif;
 }
 
-.clear {
-  clear: both;
+.inline {
+  display: inline;
 }
 
-hr {
-    border-top: 1px solid black;
+table {
+    table-layout: fixed;
+    border-spacing: 0;
 }
 
-.account-interface-container button,
-.account-interface-container p {
-  display: block;
-  float: right;
+td {
+    vertical-align: middle;
 }
 
-.lobby-item {
-  cursor: pointer;
-  
+select, button, textarea, input {
+    font-size: 4vw;
+    font-family: serif;
+    padding: .2vw 1vw;
+}
+
+textarea {
+    background: #e8e8e8;
+}
+
+input[type="text"] {
+    border-width: .3vw;
+    width: 60vw;
+    padding: .3vw 0;
+    height: 4vw;
+}
+
+h1, h2, h3, h4, h5, p, hr {
+    margin: 0;
+}
+
+h2 {
+    margin: 3vw 0;
+}
+
+p {
+    margin: 1.5vw 0;
+}
+
+a, a:visited {
+  color: blue;
+}
+
+.small {
+    font-size: 3.6vw;
+}
+
+.border {
+    border: .3vw solid black;
+    padding: 2vw;
+}
+
+table.account-interface {
+    text-align: right;
+    height: 6%;
+    width: 100%;
+}
+
+.account-interface button,
+.account-interface p {
+  display: inline-block;
+  margin: 0 1vw 0 0;
+}
+
+table.title-bar {
+    margin: 0;
+    background-color: #4d9443;
+    height: 6%;
+    width: 100%;
+}
+
+.title-bar h5 {
+    text-align: center;
+    color: #ffe6c5;
+    font-size: 5vw;
+    padding: .5vw 0;
+}
+
+table.nav-bar {
+    width: 100%;
+    height: 5%;
+}
+
+table.nav-bar td {
+    text-align: center;
+}
+
+.lobby {
+    padding: 2vw;
+}
+
+.lobby .item {
+    margin: 2vw 0;
+    background-color: #868520;
+    background: rgba(134, 133, 32, .6);
+    cursor: pointer;
+}
+
+.lobby .item:hover {
+    background: rgba(134, 133, 32, .86);
+}
+
+.lobby p {
+    text-align: center;
+    padding: 1vw;
+    color: #ffe6c5;
+}
+
+table.resolution {
+    height: 8%;
+    width: 100%;
+}
+
+table.resolution td {
+    padding: 0 2vw;
+}
+
+.resolution {
+    font-style: italic;
+}
+
+table.interface-container {
+    width: 100%;
+    height: 8.5%;
+}
+
+td.interface-cell {
+    width: 50%;
+    vertical-align: top;
+}
+
+td.interface-cell.pro {
+    text-align: left;
+    padding-left: 2vw;
+}
+
+td.interface-cell.con {
+    text-align: right;
+    padding-right: 2vw;
+}
+
+.interface {
+    border: .3vw solid black;
+    display: inline-block;
+    padding: 1vw 2vw;
+    color: #ffe6c5;
+}
+
+.pro .interface.active {
+    background: #878621;
+    background: linear-gradient(#969530, #878621);
+}
+
+.con .interface.active {
+    background: #865320;
+    background: linear-gradient(#b07338, #865320);
+}
+
+.pro .interface {
+    background: #a4a365;
+    background: linear-gradient(#bfbe75, #a4a365);
+}
+
+.con .interface {
+    background: #a38465;
+    background: linear-gradient(#be9975, #a38465);
+}
+
+.interface h3, .interface h4 {
+    display: inline-block;
+}
+
+.chat {
+    background: #858586;
+    height: 53.5%;
+    overflow: auto;
+}
+
+.chat .item {
+    width: 80vw;
+    display: inline-block;
+    margin: 2vw;
+    padding: 2vw;
+    border: .3vw solid black;
+    background: #e8e8e8;
+}
+
+.chat .item-container.pro {
+    text-align: left;
+}
+
+.chat .item-container.con {
+    text-align: right;
+}
+
+.chat .item table {
+    width: 100%;
+}
+/*the table here is the same*/
+.chat .item-container table td.v-bar {
+    width: 2%;
+}
+
+.v-bar.pro {
+    background-color: #878621;
+}
+
+.v-bar.con {
+    background-color: #865320;
+}
+
+.chat .item-container.pro table td.content  {
+    padding-left: 2%;
+}
+
+.chat .item-container.con table td.content  {
+    padding-right: 2%;
+}
+
+table.message-composer {
+    width: 100%;
+    height: 12%;
+}
+
+.message-composer td {
+    text-align: center;
+}
+
+.message-composer textarea {
+    width: 90%;
+    display: inline-block;
+    text-align: left;
+}
+
+.fullscreen {
+ position: fixed;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ overflow: auto;
+ z-index: 2;
+ background-color: rgba(0,0,0,0.5);
+}
+
+.dialog {
+    position: fixed;
+    top: 3vw;
+    left: 3vw;
+    right: 3vw;
+    z-index: 3;
+    padding: 2vw;
+    background-color: #ddd;
+    background: linear-gradient(#ddd, #959595);
+}
+
+.dialog h4 {
+    margin: 1.5vw 0 1vw;
+}
+
+.dialog p {
+  color: black;
+}
+
+.dialog textarea {
+    width: 70vw;
+}
+
+.dialog .btns-container {
+    padding-top: 2.5vw;
+    text-align: center;
+}
+
+.dialog button {
+    padding: 0 3vw;
+    margin: 0 .75vw;
+}
+
+.dialog.receive-proposal .resolution h4 {
+    margin: 0;
+    font-style: normal;
+}
+
+.dialog.receive-proposal p {
+    margin: 2vw 0;
+}
+
+.fullscreen.error {
+  z-index: 3;
+  background-color: rgba(0,0,0,0.35);
+}
+
+.fullscreen.error .dialog {
+  top: 5vw;
+  left: 5vw;
+  right: 5vw;
+}
+
+.archive table.item {
+    width: 96%;
+    margin: 2%;
+}
+
+.archive table.item td.expander-container {
+    width: 6%;
+    vertical-align: top;
+    text-align: center;
+    padding-top: 1.25vw;
+}
+
+.archive table.item td.content {
+    width: 96%;
+}
+
+.archive .item p.resolution {
+    margin: 1vw 0 .5vw;
+}
+
+.archive .item td.side p {
+    margin: .5vw 0;
+}
+
+.archive .item .v-bar {
+    width: 1vw;
+    height: 5vw;
 }

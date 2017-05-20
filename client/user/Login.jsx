@@ -20,23 +20,26 @@ class Login extends React.Component {
   render () {
     const { props: { isLoading, error, onCloseError } } = this
     return (
-      <div>
-        <h3>Login</h3>
-        <form onChange={::this.onFieldChanged} onSubmit={::this.onSubmit}>
-          <div className="form-group">
-            <label>Username or Email</label>
-            <input className="form-control" type="text" name="usernameOrEmail" />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input className="form-control" type="text" name="password" />
-          </div>
-          <button type="submit" className="btn btn-primary" disabled={isLoading}>
-            Login
-          </button>
-        </form>
-        {error && <ErrorModal title="Error" message={error} handleClose={onCloseError} />}
+
+      <div className="fullscreen">
+        <div className="dialog access">
+          <h3>Login</h3>
+          <form onChange={::this.onFieldChanged} onSubmit={::this.onSubmit}>
+            <h4>Username or Email:</h4>
+            <input type="text" name="usernameOrEmail" />
+            <h4>Password:</h4>
+            <input type="text" name="password" />
+            <div className="btns-container">
+              <button type="submit" disabled={isLoading}>
+                Login
+              </button>
+            </div>
+          </form>
+          {error &&
+            <ErrorModal title="Error" message={error} handleClose={onCloseError} />}
+        </div>
       </div>
+
     )
   }
 }

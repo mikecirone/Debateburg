@@ -55,9 +55,8 @@ var ProposalContainer = React.createClass({
     socket.removeListener("recv reject challenge");
   },
 
-  handleSubmit: function(resolution, proInputChecked) {
+  handleSubmit: function(resolution, side) {
     const {challengee, challenger, socket} = this.props;
-    var side = (proInputChecked) ? PRO : CON;
     var sides = {
       pro: (side===PRO) ? challenger : challengee,
       con: (side===CON) ? challenger : challengee
@@ -69,7 +68,7 @@ var ProposalContainer = React.createClass({
   render: function() {
     const {challengee, onClose} = this.props;
     return (<Proposal onSubmit={this.handleSubmit} onClose={onClose}
-      challengee={challengee} resolutionInputRef={this.resolutionInputRef} />);
+      challengee={challengee} />);
   }
 });
 

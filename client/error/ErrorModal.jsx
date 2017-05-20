@@ -1,26 +1,22 @@
 var React = require('react');
-var {Modal, Button} = require('react-bootstrap');
 
 var ErrorModal = function(props) {
   var {title, message, handleClose} = props;
 
   return (
-    <div>
-      <Modal show={true} onHide={handleClose}>
-        <Modal.Header>
-          <Modal.Title>{title}</Modal.Title>
-        </Modal.Header>
 
-        <Modal.Body>
-          {message}
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button bsStyle="primary" onClick={handleClose}>Okay</Button>
-        </Modal.Footer>
-
-      </Modal>
+    <div className="fullscreen error">
+      <div className="dialog">
+        <h4>{title}</h4>
+        <p>{message}</p>
+        <div className="btns-container">
+          <button onClick={()=>handleClose()}>
+            Okay
+          </button>
+        </div>
+      </div>
     </div>
+
   );
 }
 

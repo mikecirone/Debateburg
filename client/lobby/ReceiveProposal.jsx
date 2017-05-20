@@ -1,5 +1,4 @@
 var React = require('react');
-var {Modal, Button} = require('react-bootstrap');
 
 var ReceiveProposal = function(props) {
   const {challenger: {username}, isChallengerPro, resolution,
@@ -7,24 +6,29 @@ var ReceiveProposal = function(props) {
   var challengeeSide = isChallengerPro ? "CON" : "PRO";
   var challengerSide = isChallengerPro ? "PRO" : "CON";
   return (
-    <div>
-      <Modal show={true} onHide={onReject}>
 
-        <Modal.Body>
-          <p>{username} has challenged you to a debate!
-             You would be <strong>{challengeeSide}</strong>&nbsp;
-             and {username} would be <strong>{challengerSide}</strong>.</p>
-          <p>Here is the proposed debate resolution:</p>
-          <p>{resolution}</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button bsStyle="primary" onClick={onSubmit} block>Accept</Button>
-          <Button bsStyle="primary" onClick={onReject} block>Decline</Button>
-        </Modal.Footer>
-
-      </Modal>
+    <div className="fullscreen">
+      <div className="dialog receive-proposal">
+        <p>
+            {username} has challenged you to a debate! You would be &nbsp;
+            <strong>{challengeeSide}</strong> and {username} would be &nbsp;
+            <strong>{challengerSide}</strong>.
+        </p>
+        <div className="border resolution">
+          <h4>
+              Here is the proposed debate resolution:
+          </h4>
+          <p>
+              {resolution}
+          </p>
+        </div>
+        <div className="btns-container">
+          <button onClick={onSubmit}>Accept</button>
+          <button onClick={onReject}>Decline</button>
+        </div>
+      </div>
     </div>
+
   );
 }
 

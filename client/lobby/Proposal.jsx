@@ -1,43 +1,60 @@
 var React = require('react');
-var {Modal, Button, FormGroup, ControlLabel, FormControl, Radio} = require('react-bootstrap');
+
+import {PRO, CON} from 'constants';
 
 var Proposal = React.createClass({
-    handleClick: function() {
-      this.props.onSubmit(this.resolutionInput.value, this.proInput.checked);
+
+    getInitialState: function() {
+      return {
+        resolution: '',
+        side: PRO
+      }
     },
+
+    handleResolutionChange: function(event) {
+      this.setState({resolution: event.target.value})
+    },
+
+    handleRadioChange: function(event) {
+      this.setState({side: event.target.value})
+    },
+
+    handleSubmit: function() {
+      this.props.onSubmit(this.state.resolution, this.state.side)
+    },
+
     render: function() {
       const {challengee: {username}, resolutionInputRef,
              onClose, onSubmit} = this.props;
+      const {side} = this.state;
       return (
-        <div>
-          <Modal show={true} onHide={onClose}>
 
-            <Modal.Body>
-              <FormGroup controlId="formControlsTextarea">
-                <ControlLabel>Please enter your proposed debate resolution:</ControlLabel>
-                <FormControl componentClass="textarea"
-                  inputRef={(ref) => {this.resolutionInput = ref}}
-                  placeholder="The Giants are better than the Dodgers." />
-              </FormGroup>
-
-              <FormGroup>
-                <ControlLabel>Choose a side:</ControlLabel>
-                {<br />}
-                <Radio name="radioGroup" inline defaultChecked
-                  inputRef={(ref) => {this.proInput = ref}}>
-                     Pro
-                </Radio>
-                {' '}
-                <Radio name="radioGroup" inline> Con </Radio>
-              </FormGroup>
-            </Modal.Body>
-
-            <Modal.Footer>
-              <Button bsStyle="primary" onClick={this.handleClick} block>Challenge {username}</Button>
-            </Modal.Footer>
-
-          </Modal>
+        <div className="fullscreen">
+          <div className="dialog proposal">
+            <form onSubmit={this.handleSubmit}>
+              <h4>Please enter your proposed debate resolution:</h4>
+              <textarea rows="2" value={this.state.resolution}
+                onChange={this.handleResolutionChange} />
+              <div>
+                <h4 className="inline">Choose a side: </h4>
+                <input type="radio" value={PRO}
+                  checked={ (side===PRO) ? true : false }
+                  onChange={this.handleRadioChange} />
+                PRO
+                <input type="radio" value={CON}
+                  checked={ (side===CON) ? true : false }
+                  onChange={this.handleRadioChange} />
+                CON
+              </div>
+              <div className="btns-container">
+                <button type="submit">
+                  Challenge {username}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
+
       );
     }
 })

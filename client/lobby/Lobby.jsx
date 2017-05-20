@@ -54,20 +54,22 @@ var Lobby = React.createClass({
   render: function() {
     var thisRef = this;
     var userList = this.state.users.map(function(user, index) {
-                      return (<li onClick={ ()=>thisRef.handleSelectUser(user) }
-                                  key={index}
-                                  className="lobby-item">{user.username}</li>
-                                );
+                      return (<div className="item" key={index}
+                                   onClick={ ()=>thisRef.handleSelectUser(user) }>
+                                <p>{user.username}</p>
+                              </div>);
                     });
     const user = Object.assign({}, this.props.user, {socketid: socket.id});
     const { state: {proposing, receivingProposal, resolution, sides,
                     socketChallengee, socketChallenger} } = this;
     return (
-      <div>
-        <h2>Lobby</h2>
-        <ul>
-          {userList}
-        </ul>
+
+      <div className="lobby">
+
+        <label>Select a debate opponent:</label>
+
+        {userList}
+
         {proposing && <ProposalContainer socket={socket}
             challengee={socketChallengee} challenger={user}
              onClose={this.handleCloseProposal} />}
@@ -75,9 +77,10 @@ var Lobby = React.createClass({
         {receivingProposal && <ReceiveProposalContainer socket={socket}
            challenger={socketChallenger} challengee={user}
            resolution={resolution} sides={sides}
-           onClose={this.handleCloseReceiveProposal} />
-        }
+           onClose={this.handleCloseReceiveProposal} />}
+
       </div>
+
     );
   }
 });

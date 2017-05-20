@@ -22,27 +22,28 @@ var Register = React.createClass({
     render: function() {
         const { props: { isLoading, error, onCloseError } } = this;
         return (
-            <div>
-                <h3>Register</h3>
-                <form onChange={this.onFieldChanged} onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input className="form-control" type="text" name="email" />
-                    </div>
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input className="form-control" type="text" name="username" />
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input className="form-control" type="text" name="password" />
-                    </div>
-                    <button type="submit" className="btn btn-primary" disabled={isLoading}>
-                        Register
-                    </button>
-                </form>
-                {error && <ErrorModal title="Error" message={error} handleClose={onCloseError} />}
+
+          <div className="fullscreen">
+            <div className="dialog access">
+              <h3>Register</h3>
+              <form onChange={::this.onFieldChanged} onSubmit={::this.onSubmit}>
+                <h4>Email:</h4>
+                <input type="text" name="email" />
+                <h4>Username:</h4>
+                <input type="text" name="username" />
+                <h4>Password:</h4>
+                <input type="text" name="password" />
+                <div className="btns-container">
+                  <button type="submit" disabled={isLoading}>
+                    Register
+                  </button>
+                </div>
+              </form>
+              {error &&
+                <ErrorModal title="Error" message={error} handleClose={onCloseError} />}
             </div>
+          </div>
+          
         )
     }
 });

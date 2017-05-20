@@ -15,18 +15,50 @@ var AccountInterface = React.createClass({
   render: function() {
     const { props: { children,  user:{username}, isLoading } } = this;
     return (
+
       <div>
-        <form onSubmit={this.onLogout} className="account-interface-container">
-          <button type="submit" className="btn btn-primary" disabled={isLoading}>
-            Log Out
-          </button>
-          <p>{username}</p>
-        </form>
-        <hr className="clear" />
+        <table className="account-interface">
+          <tbody>
+            <tr>
+              <td>
+                <form onSubmit={this.onLogout}>
+                    <p className="small">{username}</p>
+                    <button type="submit" className="btn small" disabled={isLoading}>
+                      Log Out
+                    </button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table className="title-bar">
+          <tbody>
+            <tr>
+              <td>
+                <h5>Debateburg</h5>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table className="nav-bar small">
+          <tbody>
+            <tr>
+              <td>
+                <a href="#">Lobby</a>
+                <span> | </span>
+                <a href="#">Current Debate</a>
+                <span> | </span>
+                <a href="#">Debate Archive</a>
+                <hr />
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <div>
             {children}
         </div>
       </div>
+
     );
   }
 });
