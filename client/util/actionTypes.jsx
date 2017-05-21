@@ -25,3 +25,5 @@ export const LOBBY_RECEIVE_USER = 'LOBBY_RECEIVE_USER';
 export const SET_DEBATE = 'SET_DEBATE';
 
 export const NEXT_PHASE = 'NEXT_PHASE';
+
+export const NEW_REMAINING_TIME = 'NEW_REMAINING_TIME';

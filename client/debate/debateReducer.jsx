@@ -1,5 +1,6 @@
 import * as actionTypes from 'actionTypes';
 import {PRO_SUMMARY, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL, DONE} from 'debateConstants';
+import {PRO, CON} from 'constants';
 
 var isUserProReducer = (state = false, action) => {
   switch(action.type) {
@@ -49,7 +50,7 @@ var debateReducer = (state = {}, action) => {
   const lesserState = {
     isUserPro: isUserProReducer(state.isUserPro, action),
     phase: phaseReducer(state.phase, action),
-    sides: sidesReducer(state.sides, action)
+    sides: sidesReducer(state.sides, action),
   };
   var isUserActive = (function(lesserState){
                           const isUserPro = lesserState.isUserPro;
@@ -79,7 +80,21 @@ var debateReducer = (state = {}, action) => {
                                   return 0;
                             }
                           })(lesserState);
-  return Object.assign({}, lesserState, {isUserActive}, {countdownTime});
+  var activeSide = (function(lesserState) {
+                              const phase = lesserState.phase;
+                              switch(phase) {
+                                case PRO_SUMMARY:
+                                case PRO_REBUTTAL:
+                                  return PRO;
+                                case CON_SUMMARY:
+                                case CON_REBUTTAL:
+                                  return CON;
+                                default:
+                                  return PRO;
+                              }
+                            })(lesserState)
+  return Object.assign({}, lesserState,
+                           {isUserActive}, {countdownTime}, {activeSide});
 };
 
 export default debateReducer;

@@ -158,7 +158,7 @@ td.interface-cell.con {
 }
 
 .interface {
-    border: .3vw solid black;
+    border: .2vw solid black;
     display: inline-block;
     padding: 1vw 2vw;
     color: #ffe6c5;
@@ -188,6 +188,14 @@ td.interface-cell.con {
     display: inline-block;
 }
 
+.interface-cell.pro h4.user-and-side {
+  padding-right: 2vw;
+}
+
+.interface-cell.con h4.user-and-side {
+  padding-left: 2vw;
+}
+
 .chat {
     background: #858586;
     height: 53.5%;
@@ -199,7 +207,7 @@ td.interface-cell.con {
     display: inline-block;
     margin: 2vw;
     padding: 2vw;
-    border: .3vw solid black;
+    border: .2vw solid black;
     background: #e8e8e8;
 }
 

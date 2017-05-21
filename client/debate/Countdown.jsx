@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 var {connect} = require('react-redux');
 import { hashHistory } from 'react-router';
 
-import {nextPhase} from 'debateActions';
+import {nextPhase, newRemainingTime} from 'debateActions';
 import {PRO_SUMMARY, CON_SUMMARY, PRO_REBUTTAL, CON_REBUTTAL, DONE} from 'debateConstants';
 
 var Countdown = React.createClass({
@@ -18,9 +18,10 @@ var Countdown = React.createClass({
     var duration = moment.duration(this.endMoment.diff(moment()));
     var seconds = duration.seconds().toString();
     if(seconds.length===1) seconds = "0" + seconds;
+    var minutes = duration.minutes().toString();
+    this.props.dispatch(newRemainingTime({minutes, seconds}));
     return {
-      minutes: duration.minutes().toString(),
-      seconds
+      minutes, seconds
     };
   },
 
