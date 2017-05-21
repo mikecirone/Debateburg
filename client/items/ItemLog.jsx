@@ -11,7 +11,6 @@ var ItemLog = React.createClass({
 
     return (
       <div id={`${itemType}-log`}>
-        <ul>
           {function() {
             var children = [];
             for(var i=0; i < items.length; ++i) {
@@ -19,10 +18,6 @@ var ItemLog = React.createClass({
             }
             return children;
           }()}
-          {/* {items.map(item =>
-            <ItemReactClass item={item} key={item.id} />
-          )} */}
-        </ul>
       </div>
     );
   }

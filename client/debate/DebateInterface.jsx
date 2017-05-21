@@ -82,10 +82,17 @@ var DebateInterface = React.createClass({
   },
 
   render: function() {
-    const {phase, sides, countdownTime,
+    const {phase, sides, countdownTime, resolution,
            isUserActive, activeSide, dispatch} = this.props;
     const {minutes, seconds} = this.state;
     const remainingTimeStr = minutes + ":" + seconds;
+
+    var proInterfaceClassStr = "interface pro ";
+    if(activeSide===PRO) proInterfaceClassStr += "active";
+
+    var conInterfaceClassStr = "interface con ";
+    if(activeSide===CON) conInterfaceClassStr += "active";
+
     return (
 
       <div>
@@ -95,83 +102,61 @@ var DebateInterface = React.createClass({
               <td>
                 <p>
                   <span><strong>Resolution:</strong></span>
-                  Dogs are cooler than cats. Paul Atreides was bad
-                  for galactic society and ...
+                  {resolution}
                 </p>
               </td>
             </tr>
           </tbody>
         </table>
-        <table className="interface-container">
-          <tbody>
-            <tr>
-              <td className="interface-cell pro">
-                <div className="interface active">
-                  <h4 className="user-and-side">
-                      {sides.pro.username} | PRO
-                  </h4>
-                  <h3 className="countdown">
-                    {activeSide===PRO ? remainingTimeStr : '0:00'}
-                  </h3>
-                </div>
-              </td>
-              <td className="interface-cell con">
-                <div className="interface">
-                  <h3 className="countdown">
-                    {activeSide===CON ? remainingTimeStr : '0:00'}
-                  </h3>
-                  <h4 className="user-and-side">
-                      CON | {sides.con.username}
-                    </h4>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <table class="interface-container">
-          <tr>
-            <td class="interface-cell pro">
-                <div class="interface active">
-                  <table>
-                    <tr>
-                      <td>
-                        <h4>
-                            PRO Summary
-                        </h4>
-                        <hr />
-                        <h5>RedKrovvy</h5>
-                      </td>
-                      <td>
-                        <h3 className="countdown">
-                          {activeSide===PRO ? remainingTimeStr : '0:00'}
-                        </h3>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-            </td>
-            <td class="interface-cell con">
-                <div class="interface active">
-                  <table>
-                    <tr>
-                      <td>
-                        <h3 className="countdown">
-                          {activeSide===CON ? remainingTimeStr : '0:00'}
-                        </h3>
-                      </td>
-                      <td>
-                        <h4>
-                            CON Summary
-                        </h4>
-                        <hr />
-                        <h5>RedKrovvy</h5>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-            </td>
-          </tr>
-        </table>
+        <div className="interface-container">
+            <div className={proInterfaceClassStr}>
+              <table>
+                <tbody>
+                  <tr>
+                    <td className="side-and-user">
+                      <h4>
+                          PRO
+                      </h4>
+                      <hr />
+                      <h5>
+                        {sides.pro.username}
+                      </h5>
+                    </td>
+                    <td>
+                      <h3 className="countdown">
+                        {activeSide===PRO ? remainingTimeStr : '0:00'}
+                      </h3>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className={conInterfaceClassStr}>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h3 className="countdown">
+                        {activeSide===CON ? remainingTimeStr : '0:00'}
+                      </h3>
+                    </td>
+                    <td className="side-and-user">
+                      <h4>
+                          CON
+                      </h4>
+                      <hr />
+                      <h5>
+                        {sides.con.username}
+                      </h5>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 className="phase">
+              Phase: {this.getPhaseStr(phase)}
+            </h4>
+          </div>
       </div>
 
     );

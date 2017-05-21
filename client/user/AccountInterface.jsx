@@ -16,7 +16,7 @@ var AccountInterface = React.createClass({
     const { props: { children,  user:{username}, isLoading } } = this;
     return (
 
-      <div>
+      <div className="account-interface-react">
         <table className="account-interface">
           <tbody>
             <tr>
@@ -54,9 +54,7 @@ var AccountInterface = React.createClass({
             </tr>
           </tbody>
         </table>
-        <div>
-            {children}
-        </div>
+        {children}
       </div>
 
     );

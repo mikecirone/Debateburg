@@ -19,10 +19,9 @@ var ChatItemMakerContainer = React.createClass({
     const {socket, dispatch, activeChannelId, isUserActive,
            userId, username, value} = this.props;
 
-      function handleSubmit(event) {
-        event.preventDefault();
+      function handleSubmit(value) {
         dispatch(itemsActions.submitItemInput({
-          text: jQuery(`#${chatStr}-input`).val(),
+          text: value,
           channelID: activeChannelId,
           _user: userId,
           username: username,

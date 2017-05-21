@@ -53,7 +53,6 @@ module.exports = {
       ItemsActions: 'client/items/ItemsActions.jsx',
       createItemsReducer: 'client/items/createItemsReducer.jsx',
       DebateInterface: 'client/debate/DebateInterface.jsx',
-      Countdown: 'client/debate/Countdown.jsx',
       debateActions: 'client/debate/debateActions.jsx',
       debateReducer: 'client/debate/debateReducer.jsx',
       debateConstants: 'client/debate/debateConstants.jsx',

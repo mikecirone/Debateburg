@@ -70,7 +70,7 @@ a, a:visited {
 
 table.account-interface {
     text-align: right;
-    height: 6%;
+    height: 6vh;
     width: 100%;
 }
 
@@ -83,7 +83,7 @@ table.account-interface {
 table.title-bar {
     margin: 0;
     background-color: #4d9443;
-    height: 6%;
+    height: 6vh;
     width: 100%;
 }
 
@@ -96,7 +96,7 @@ table.title-bar {
 
 table.nav-bar {
     width: 100%;
-    height: 5%;
+    height: 5vh;
 }
 
 table.nav-bar td {
@@ -125,7 +125,7 @@ table.nav-bar td {
 }
 
 table.resolution {
-    height: 8%;
+    height: 9vh;
     width: 100%;
 }
 
@@ -133,76 +133,71 @@ table.resolution td {
     padding: 0 2vw;
 }
 
+table.resolution p {
+  margin: 0;
+}
+
 .resolution {
     font-style: italic;
 }
 
-table.interface-container {
+div.interface-container {
     width: 100%;
-    height: 8.5%;
-}
-
-td.interface-cell {
-    width: 50%;
-    vertical-align: top;
-}
-
-td.interface-cell.pro {
-    text-align: left;
-    padding-left: 2vw;
-}
-
-td.interface-cell.con {
-    text-align: right;
-    padding-right: 2vw;
+    height: 13.5vh;
+    text-align: center;
 }
 
 .interface {
-    border: .2vw solid black;
+    border: .3vw solid black;
     display: inline-block;
-    padding: 1vw 2vw;
+    padding: 0vw 2vw;
     color: #ffe6c5;
+    width: 40vw;
 }
 
-.pro .interface.active {
-    background: #878621;
-    background: linear-gradient(#969530, #878621);
+.interface td.side-and-user {
+  width: 30vw;
 }
 
-.con .interface.active {
-    background: #865320;
-    background: linear-gradient(#b07338, #865320);
-}
-
-.pro .interface {
+.pro.interface {
+    text-align: right;
+    margin-right: 3vw;
     background: #a4a365;
     background: linear-gradient(#bfbe75, #a4a365);
 }
 
-.con .interface {
+.con.interface {
+    text-align: left;
+    margin-left: 3vw;
     background: #a38465;
     background: linear-gradient(#be9975, #a38465);
 }
 
-.interface h3, .interface h4 {
-    display: inline-block;
+.pro.interface.active {
+    background: #878621;
+    background: linear-gradient(#969530, #878621);
 }
 
-.interface-cell.pro h4.user-and-side {
-  padding-right: 2vw;
+.con.interface.active {
+    background: #865320;
+    background: linear-gradient(#b07338, #865320);
 }
 
-.interface-cell.con h4.user-and-side {
+.pro.interface h3.countdown {
   padding-left: 2vw;
 }
 
-.chat {
+.con.interface h3.countdown {
+  padding-right: 2vw;
+}
+
+#chat-log {
     background: #858586;
-    height: 53.5%;
+    height: 47vh;
     overflow: auto;
 }
 
-.chat .item {
+#chat-log .item {
     width: 80vw;
     display: inline-block;
     margin: 2vw;
@@ -211,19 +206,19 @@ td.interface-cell.con {
     background: #e8e8e8;
 }
 
-.chat .item-container.pro {
+#chat-log .item-container.pro {
     text-align: left;
 }
 
-.chat .item-container.con {
+#chat-log .item-container.con {
     text-align: right;
 }
 
-.chat .item table {
+#chat-log .item table {
     width: 100%;
 }
 /*the table here is the same*/
-.chat .item-container table td.v-bar {
+#chat-log .item-container table td.v-bar {
     width: 2%;
 }
 
@@ -235,17 +230,17 @@ td.interface-cell.con {
     background-color: #865320;
 }
 
-.chat .item-container.pro table td.content  {
+#chat-log .item-container.pro table td.content  {
     padding-left: 2%;
 }
 
-.chat .item-container.con table td.content  {
+#chat-log .item-container.con table td.content  {
     padding-right: 2%;
 }
 
 table.message-composer {
     width: 100%;
-    height: 12%;
+    height: 12vh;
 }
 
 .message-composer td {

@@ -22,9 +22,8 @@ var ChatContainer = React.createClass({
   render: function() {
     const { resolution, activeChannelId, isDebate } = this.props;
     return (
-      <div>
-        <DebateInterface />
-        <h4>Resolution: {resolution}</h4>
+      <div className="chat-container-react">
+        <DebateInterface resolution={resolution} />
         <ChatLogContainer socket={socket} activeChannelId={activeChannelId} />
         {isDebate && <ChatItemMakerContainer socket={socket}
                                   activeChannelId={activeChannelId} />}
