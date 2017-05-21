@@ -43,6 +43,10 @@ input[type="text"] {
     height: 4vw;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 h1, h2, h3, h4, h5, p, hr {
     margin: 0;
 }
@@ -317,31 +321,35 @@ table.message-composer {
   right: 5vw;
 }
 
-.archive table.item {
+#channels-container-react h3 {
+  margin-left: 10vw;
+}
+
+#channels-log table.item {
     width: 96%;
     margin: 2%;
 }
 
-.archive table.item td.expander-container {
+#channels-log table.item td.expander-container {
     width: 6%;
     vertical-align: top;
     text-align: center;
     padding-top: 1.25vw;
 }
 
-.archive table.item td.content {
+#channels-log table.item td.content {
     width: 96%;
 }
 
-.archive .item p.resolution {
+#channels-log .item p.resolution {
     margin: 1vw 0 .5vw;
 }
 
-.archive .item td.side p {
+#channels-log .item td.side p {
     margin: .5vw 0;
 }
 
-.archive .item .v-bar {
+#channels-log .item .v-bar {
     width: 1vw;
     height: 5vw;
 }

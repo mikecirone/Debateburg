@@ -1,6 +1,7 @@
 //https://github.com/reactjs/redux/issues/297
 
 import React from 'react';
+var {connect} = require('react-redux');
 
 import connectSubmitForm from 'connectSubmitForm';
 import ErrorModal from 'ErrorModal';
@@ -16,6 +17,7 @@ var Register = React.createClass({
     onSubmit: function(event) {
         event.preventDefault();
         const { email, username, password } = this.state;
+        // this.props.dispatch(fetchRegister(email, username, password));
         this.props.onSubmit(email, username, password);
     },
 
@@ -43,10 +45,12 @@ var Register = React.createClass({
                 <ErrorModal title="Error" message={error} handleClose={onCloseError} />}
             </div>
           </div>
-          
+
         )
     }
 });
+
+// export default connect(null)(Register);
 
 var RedirectRegister = redirectSubmitted('/lobby')(Register);
 
