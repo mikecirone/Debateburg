@@ -1,5 +1,6 @@
 var { createStore, combineReducers, applyMiddleware, compose } = require('redux');
 var thunk = require('redux-thunk').default;
+import io from 'socket.io-client';
 
 import * as actionTypes from 'actionTypes';
 import userReducer from 'userReducer';
@@ -18,7 +19,13 @@ export var configure = (initialState = {}) => {
     //TODO: combine channels and activeChannel,
     //      hard to do given createItemsReducer structure...
     activeChannel: activeChannelReducer,
-    debate: debateReducer
+    debate: debateReducer,
+    socket: function(socket = null, action) {
+      if(!socket)
+        return io('', { path: '/lobby' });
+      else
+        return socket
+    }
   });
 
   var store = createStore(reducers, initialState, compose(

@@ -23,8 +23,13 @@ var AccountInterface = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if( !this.props.user.username && nextProps.user.username )
+    const {socket} = this.props;
+    if( !this.props.user.username && nextProps.user.username ) {
       this.setState({isRegistering: false, isLoggingIn: false});
+      socket.emit('new user',
+                  Object.assign({}, nextProps.user,
+                                    {socketid: this.props.socket.id}));
+    }
   },
 
   render: function() {
@@ -49,7 +54,9 @@ var AccountInterface = React.createClass({
                           Register
                         </button>
                         <button className="btn small"
-                          onClick={ ()=>hashHistory.push('/login') }>
+                          onClick={ ()=>thisRef.setState({isLoggingIn: true}) }>
+                        {/* <button className="btn small"
+                          onClick={ ()=>hashHistory.push('/login') }> */}
                           Login
                         </button>
                       </span>
@@ -74,6 +81,10 @@ var AccountInterface = React.createClass({
           <tbody>
             <tr>
               <td>
+                {/* <button className="btn small"
+                  onClick={ ()=>console.log(this.props.reduxState) }>
+                  Check
+                </button> */}
                 <h5>Debateburg</h5>
               </td>
             </tr>
@@ -106,6 +117,8 @@ var AccountInterface = React.createClass({
 
 export default connect((state) => {
     return {
-        user: state.user
+        user: state.user,
+        socket: state.socket,
+        reduxState: state
     };
 })(AccountInterface);

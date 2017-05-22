@@ -15,8 +15,8 @@ class Login extends React.Component {
   onSubmit (event) {
     event.preventDefault()
     const { usernameOrEmail, password } = this.state
-    // this.props.dispatch(fetchLogin(usernameOrEmail, password))
-    this.props.onSubmit(usernameOrEmail, password)
+    this.props.dispatch(fetchLogin(usernameOrEmail, password))
+    // this.props.onSubmit(usernameOrEmail, password)
   }
 
   render () {
@@ -46,8 +46,8 @@ class Login extends React.Component {
   }
 }
 
-// export default connect(null)(Login);
+export default connect(null)(Login);
 
-var RedirectLogin = redirectSubmitted('/lobby')(Login);
-
-export default connectSubmitForm(RedirectLogin, fetchLogin, "Oops, email, username or password is wrong.")
+// var RedirectLogin = redirectSubmitted('/lobby')(Login);
+//
+// export default connectSubmitForm(RedirectLogin, fetchLogin, "Oops, email, username or password is wrong.")

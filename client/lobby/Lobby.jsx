@@ -2,7 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 
 import io from 'socket.io-client';
-const socket = io('', { path: '/lobby' });
+// const socket = io('', { path: '/lobby' });
 
 import ProposalContainer from 'ProposalContainer';
 import ReceiveProposalContainer from 'ReceiveProposalContainer';
@@ -17,6 +17,7 @@ var Lobby = React.createClass({
   },
 
   componentDidMount: function() {
+    const {socket} = this.props;
     socket.on(`recv new users`, users => {
         this.setState( {users: users.filter((usr)=>usr._id!==this.props.user._id)} );
       }
@@ -25,11 +26,12 @@ var Lobby = React.createClass({
       this.setState( {receivingProposal: true, socketChallenger: challenger,
                       resolution, sides } );
     });
-    socket.emit('new user', Object.assign({}, this.props.user, {socketid: socket.id}));
+    // socket.emit('new user', Object.assign({}, this.props.user, {socketid: socket.id}));
     socket.emit('get users');
   },
 
   componentWillUnmount: function() {
+    const {socket} = this.props;
     socket.emit('remove user', this.props.user);
     socket.removeListener('recv new users');
     //stops further calls to this.setState() callback for socket.on('recv new users')
@@ -59,6 +61,7 @@ var Lobby = React.createClass({
                                 <p>{user.username}</p>
                               </div>);
                     });
+    const {socket} = this.props;
     const user = Object.assign({}, this.props.user, {socketid: socket.id});
     const { state: {proposing, receivingProposal, resolution, sides,
                     socketChallengee, socketChallenger} } = this;
@@ -89,5 +92,6 @@ var Lobby = React.createClass({
 export default connect((state) => {
   return {
     user: state.user,
+    socket: state.socket
   };
 })(Lobby);
