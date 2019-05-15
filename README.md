@@ -13,3 +13,5 @@ Here is a demo of the prototype. Styling is next, but these core features are do
    * There are 4 debate phases, 2 for each side.
    * While a debater's side is active, he/she can enter debate messages. The other player's message ability is disabled.
  * Users can view past debates.
+ 
+ Some more data.
